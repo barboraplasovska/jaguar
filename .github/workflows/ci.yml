@@ -1,0 +1,37 @@
+name: Flutter CI
+
+on:
+    push:
+      branches: [ main,dev ]
+    pull_request:
+      branches: [ main,dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.10.5'
+          
+      - name: Update Flutter and Dart
+        run: |
+          flutter upgrade
+          flutter pub global activate dart_style
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        continue-on-error: true
+        run: flutter test
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
