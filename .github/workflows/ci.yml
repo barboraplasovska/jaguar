@@ -1,6 +1,4 @@
-# .github/workflows/ci.yml
-
-name: CI
+name: Flutter CI
 
 on:
   push:
@@ -13,8 +11,12 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.0'
-
+          flutter-version: 'stable'
+          channel: 'stable'
+      - name: Update Flutter and Dart
+        run: |
+          flutter upgrade
+          flutter pub global activate dart_style
       - name: Check out code
         uses: actions/checkout@v3
 
