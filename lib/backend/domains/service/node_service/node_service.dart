@@ -6,22 +6,52 @@ import 'package:pingfrontend/backend/domains/entity/node_interface.dart';
 import 'package:pingfrontend/backend/domains/service/node_service_interface.dart';
 
 class NodeService implements INodeService {
+  FileSystemEntity _createFile(String path, NodeType type) {
+    if (type == NodeType.folder) {
+      Directory dir = Directory(path);
+      dir.createSync();
+      return dir;
+    } else {
+      File file = File(path);
+      file.createSync();
+      return file;
+    }
+  }
+
   @override
   INode create(INode folder, String name, NodeType type) {
     FileSystemEntity newFile;
+    String path = folder.getPath() + name;
     if (type == NodeType.file) {
-      newFile = File(folder.getPath() + name);
+      newFile = File(path);
     } else {
-      newFile = Directory(folder.getPath() + name);
+      newFile = Directory(path);
+    }
+
+    if (!newFile.existsSync()) {
+      newFile = _createFile(path, type);
     }
 
     INode newNode = Node(newFile, type, {});
+    if (type == NodeType.folder) {
+      Directory dir = newFile as Directory;
+      for (FileSystemEntity child in dir.listSync()) {
+        INode childNode = create(newNode, basename(child.path),
+            child is Directory ? NodeType.folder : NodeType.file);
+        newNode.addChild(childNode);
+      }
+    }
+
     folder.addChild(newNode);
     return newNode;
   }
 
   @override
   bool delete(INode node) {
+    for (INode child in node.getChildren()) {
+      delete(child);
+    }
+
     FileSystemEntity file = node.getFile();
     node.removeSelfFromParent();
     file.deleteSync(recursive: true);
