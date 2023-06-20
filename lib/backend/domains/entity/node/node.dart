@@ -7,7 +7,7 @@ class Node extends INode {
   late final FileSystemEntity _file;
   late final NodeType _type;
   late INode? _parent;
-  late final Set<INode> _children;
+  late final List<INode> _children;
 
 
   @override
@@ -51,7 +51,7 @@ class Node extends INode {
   }
 
   @override
-  Set<INode> getChildren() {
+  List<INode> getChildren() {
     return _children;
   }
 

@@ -12,7 +12,7 @@ abstract class INode {
 
   NodeType getType();
 
-  Set<INode> getChildren();
+  List<INode> getChildren();
 
   void setParent(INode parent);
 

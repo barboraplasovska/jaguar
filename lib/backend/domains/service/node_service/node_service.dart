@@ -19,9 +19,10 @@ class NodeService implements INodeService {
   }
 
   @override
-  INode create(INode folder, String name, NodeType type) {
+  INode create(INode? folder, String name, NodeType type) {
     FileSystemEntity newFile;
-    String path = folder.getPath() + name;
+
+    String path = folder != null ?  folder.getPath() + name : name;
     if (type == NodeType.file) {
       newFile = File(path);
     } else {
@@ -32,17 +33,16 @@ class NodeService implements INodeService {
       newFile = _createFile(path, type);
     }
 
-    INode newNode = Node(newFile, type, {});
+    INode newNode = Node(newFile, type, []);
     if (type == NodeType.folder) {
       Directory dir = newFile as Directory;
       for (FileSystemEntity child in dir.listSync()) {
         INode childNode = create(newNode, basename(child.path),
             child is Directory ? NodeType.folder : NodeType.file);
-        newNode.addChild(childNode);
       }
     }
 
-    folder.addChild(newNode);
+    folder?.addChild(newNode);
     return newNode;
   }
 
@@ -74,4 +74,6 @@ class NodeService implements INodeService {
   INode update(INode node, String content) {
     return node;
   }
+
+  NodeService();
 }
