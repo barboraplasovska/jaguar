@@ -8,7 +8,7 @@ abstract class INodeService {
 
   INode update(INode node, String content);
   bool delete(INode node);
-  INode create(INode folder, String name, NodeType type);
+  INode create(INode? folder, String name, NodeType type);
   INode move(INode nodeToMove, INode destinationFolder);
 
 }
