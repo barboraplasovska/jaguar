@@ -6,17 +6,23 @@ enum NodeType {
 }
 
 abstract class INode {
-  File getFile();
+  FileSystemEntity getFile();
 
   String getPath();
 
   NodeType getType();
 
-  bool isFile() {
-    return getType() == NodeType.file;
-  }
+  Set<INode> getChildren();
 
-  bool isFolder() {
-    return getType() == NodeType.folder;
-  }
+  void setParent(INode parent);
+
+  INode getParent();
+
+  void addChild(INode node);
+
+  void removeSelfFromParent();
+
+  bool isFile();
+
+  bool isFolder();
 }
