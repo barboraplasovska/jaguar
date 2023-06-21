@@ -12,9 +12,9 @@ ThemeData _tigerTheme() {
       secondary: const Color(0xFF303036),
       onSecondary: const Color(0xFFF5F5F5),
       tertiary: const Color(0xFF050401),
-      background: const Color(0xFFF5F5F5),
-      onBackground: const Color(0xFF050401),
-      primaryContainer: const Color(0xFF303036),
+      background: const Color(0xFF1E1E1E),
+      onBackground: const Color(0xFF323233),
+      primaryContainer: const Color(0xFF252526),
     ),
   );
 }

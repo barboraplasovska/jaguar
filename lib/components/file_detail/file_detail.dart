@@ -1,10 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class FileDetail extends StatelessWidget {
-  const FileDetail({super.key});
+  final FileSystemEntity? selectedFile;
+
+  const FileDetail({
+    super.key,
+    this.selectedFile,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Code is here.");
+    return selectedFile != null
+        ? Text(selectedFile.toString())
+        : const Text("No file open");
   }
 }
