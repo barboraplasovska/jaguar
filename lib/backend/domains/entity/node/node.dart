@@ -56,7 +56,7 @@ class Node extends INode {
   }
 
   @override
-  void setParent(INode parent) {
+  void setParent(INode? parent) {
     _parent = parent;
   }
 
