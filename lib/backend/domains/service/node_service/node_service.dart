@@ -22,7 +22,11 @@ class NodeService implements INodeService {
   INode create(INode? folder, String name, NodeType type) {
     FileSystemEntity newFile;
 
-    String path = folder != null ? folder.getPath() + name : name;
+    //String path = folder != null ? folder.getPath() + name : name;
+
+    String folderPath = folder?.getPath() ?? "";
+    String path = join(folderPath, name);
+
     if (type == NodeType.file) {
       newFile = File(path);
     } else {
