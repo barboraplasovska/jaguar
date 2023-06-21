@@ -1,0 +1,3 @@
+class TigrouCompiler extends EntityFeature {
+
+}
