@@ -1,20 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/node_interface.dart';
 
-class TreeViewState extends ChangeNotifier {
-  INode? _root;
+import '../../backend/domains/entity/node_interface.dart';
 
-  INode? get root => _root;
-
-  set root(INode? value) {
-    _root = value;
-    notifyListeners();
-  }
-}
-
-class TreeView extends StatelessWidget {
+class TreeView extends StatefulWidget {
   final INode root;
   final void Function(FileSystemEntity file)? onFileSelected;
 
@@ -24,25 +14,76 @@ class TreeView extends StatelessWidget {
     required this.onFileSelected,
   }) : super(key: key);
 
+  @override
+  State<TreeView> createState() => _TreeViewState();
+}
+
+class _TreeViewState extends State<TreeView> {
+  List<INode> expandedNodes = [];
+
+  void toggleExpansion(INode node) {
+    setState(() {
+      if (expandedNodes.contains(node)) {
+        expandedNodes.remove(node);
+      } else {
+        expandedNodes.add(node);
+      }
+    });
+  }
+
   Widget _buildNode(INode node, {double level = 0}) {
     if (node.isFolder()) {
-      return Padding(
+      bool isExpanded = expandedNodes.contains(node);
+
+      return Container(
         padding: EdgeInsets.only(left: 20 * level),
-        child: ExpansionTile(
-          title: Text(node.getPath()),
-          children: node
-              .getChildren()
-              .map((child) => _buildNode(child, level: level + 1))
-              .toList(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              dense: true,
+              hoverColor:
+                  Theme.of(context).colorScheme.primary.withOpacity(0.2),
+              horizontalTitleGap: 0,
+              contentPadding: const EdgeInsets.only(left: 10),
+              leading: Icon(
+                isExpanded
+                    ? Icons.keyboard_arrow_down
+                    : Icons.keyboard_arrow_right,
+                size: 20,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              title: Text(
+                node.getPath(),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              onTap: () {
+                toggleExpansion(node);
+              },
+            ),
+            if (isExpanded)
+              ...node
+                  .getChildren()
+                  .map(
+                    (child) => _buildNode(
+                      child,
+                      level: level + 1,
+                    ),
+                  )
+                  .toList(),
+          ],
         ),
       );
     } else {
       return ListTile(
+        dense: true,
+        hoverColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
         title: Text(node.getPath()),
         onTap: () {
-          // FIXME: open file in editor
-          if (onFileSelected != null) {
-            onFileSelected!(node.getFile());
+          if (widget.onFileSelected != null) {
+            widget.onFileSelected!(node.getFile());
           }
         },
       );
@@ -53,7 +94,7 @@ class TreeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        _buildNode(root),
+        _buildNode(widget.root),
       ],
     );
   }

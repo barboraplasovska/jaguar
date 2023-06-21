@@ -12,6 +12,8 @@ class FileDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(selectedFile.toString());
+    return selectedFile != null
+        ? Text(selectedFile.toString())
+        : const Text("No file open");
   }
 }

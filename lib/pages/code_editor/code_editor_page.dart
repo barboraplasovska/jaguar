@@ -47,9 +47,9 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
         ),
       ],
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          backgroundColor: Theme.of(context).colorScheme.onBackground,
           actions: [
             Padding(
               padding: const EdgeInsets.all(10),
@@ -76,8 +76,11 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
           children: [
             Expanded(
               flex: 2,
-              child: FileTree(
-                root: root,
+              child: Container(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: FileTree(
+                  root: root,
+                ),
               ),
             ),
             Consumer<FileProvider>(
