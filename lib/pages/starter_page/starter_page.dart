@@ -39,10 +39,9 @@ class StarterPage extends StatelessWidget {
                           ),
                         ),
                       )
-                      // Process the selected file here
                     },
                 },
-                child: const Text("Open the editor"),
+                child: const Text("Open project"),
               ),
             ),
           ],

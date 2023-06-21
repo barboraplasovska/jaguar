@@ -10,6 +10,8 @@ abstract class INode {
 
   String getPath();
 
+  String getName();
+
   NodeType getType();
 
   List<INode> getChildren();
