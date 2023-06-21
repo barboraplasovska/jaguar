@@ -21,15 +21,20 @@ class CodeEditorPage extends StatefulWidget {
 class _CodeEditorPageState extends State<CodeEditorPage> {
   // FIXME-begin: hardcoded for file-tree
   final INode root = Node(
-    File('Folder 2'),
+    File('lib'),
     NodeType.folder,
     [
-      Node(File('File 3'), NodeType.file, []),
       Node(
-        File('Subfolder'),
+        File('components'),
         NodeType.folder,
         [
-          Node(File('File 4'), NodeType.file, []),
+          Node(File('editor_app_bar'), NodeType.folder, [
+            Node(
+              File('editor_app_bar.dart'),
+              NodeType.file,
+              [],
+            ),
+          ])
         ],
       ),
     ],

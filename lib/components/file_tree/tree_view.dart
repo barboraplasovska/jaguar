@@ -83,6 +83,7 @@ class _TreeViewState extends State<TreeView> {
         title: Text(node.getPath()),
         onTap: () {
           if (widget.onFileSelected != null) {
+            // FIXME: possibly pass the path of the parent + file  ?
             widget.onFileSelected!(node.getFile());
           }
         },
