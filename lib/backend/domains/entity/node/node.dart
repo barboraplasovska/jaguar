@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:pingfrontend/backend/domains/entity/node_interface.dart';
 
-class Node extends INode {
+import 'package:path/path.dart';
 
+class Node extends INode {
   late final FileSystemEntity _file;
   late final NodeType _type;
   late INode? _parent;
   late final List<INode> _children;
-
 
   @override
   FileSystemEntity getFile() {
@@ -20,13 +20,16 @@ class Node extends INode {
     return _file.path;
   }
 
+  String getName() {
+    return basename(_file.path);
+  }
+
   @override
   NodeType getType() {
     return _type;
-
   }
 
-  Node(this._file, this._type,  this._children);
+  Node(this._file, this._type, this._children);
 
   @override
   void addChild(INode node) {
@@ -45,7 +48,7 @@ class Node extends INode {
   }
 
   @override
-  void  removeSelfFromParent() {
+  void removeSelfFromParent() {
     _parent!.getChildren().remove(this);
     _parent = null;
   }
@@ -64,5 +67,4 @@ class Node extends INode {
   INode getParent() {
     return _parent!;
   }
-
 }

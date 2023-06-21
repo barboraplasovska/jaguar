@@ -54,7 +54,7 @@ class _TreeViewState extends State<TreeView> {
                 color: Theme.of(context).colorScheme.primary,
               ),
               title: Text(
-                node.getPath(),
+                node.getName(),
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -80,7 +80,7 @@ class _TreeViewState extends State<TreeView> {
       return ListTile(
         dense: true,
         hoverColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-        title: Text(node.getPath()),
+        title: Text(node.getName()),
         onTap: () {
           if (widget.onFileSelected != null) {
             // FIXME: possibly pass the path of the parent + file  ?

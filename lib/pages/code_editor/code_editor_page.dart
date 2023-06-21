@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
 import 'package:pingfrontend/components/file_tree/file_tree.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,11 @@ import '../../components/file_tree/file_provider.dart';
 import '../../themes/theme_switcher.dart';
 
 class CodeEditorPage extends StatefulWidget {
-  const CodeEditorPage({super.key});
+  final IProject? project;
+  const CodeEditorPage({
+    super.key,
+    required this.project,
+  });
 
   @override
   State<CodeEditorPage> createState() => _CodeEditorPageState();
@@ -20,8 +25,8 @@ class CodeEditorPage extends StatefulWidget {
 
 class _CodeEditorPageState extends State<CodeEditorPage> {
   // FIXME-begin: hardcoded for file-tree
-  final INode root = Node(
-    File('lib'),
+  /*final INode root = Node(
+    File('Folder 2'),
     NodeType.folder,
     [
       Node(
@@ -38,7 +43,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
         ],
       ),
     ],
-  );
+  );*/
   // FIXME-end:
 
   @override
@@ -62,7 +67,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
               child: Container(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: FileTree(
-                  root: root,
+                  root: widget.project!.getRootNode(),
                 ),
               ),
             ),
