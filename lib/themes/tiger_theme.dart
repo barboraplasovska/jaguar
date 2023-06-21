@@ -15,6 +15,7 @@ ThemeData _tigerTheme() {
       background: const Color(0xFF1E1E1E),
       onBackground: const Color(0xFF323233),
       primaryContainer: const Color(0xFF252526),
+      onPrimaryContainer: const Color(0xFFF5F5F5),
     ),
   );
 }

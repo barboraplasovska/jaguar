@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../backend/domains/entity/node/node.dart';
 import '../../backend/domains/entity/node_interface.dart';
+import '../../components/editor_app_bar/editor_app_bar.dart';
 import '../../components/file_detail/file_detail.dart';
 import '../../components/file_tree/file_provider.dart';
 import '../../themes/theme_switcher.dart';
@@ -48,30 +49,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
       ],
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.onBackground,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: DropdownButton<AppTheme>(
-                value: themeSwitcher.currentThemeOption,
-                onChanged: (AppTheme? theme) {
-                  if (theme != null) {
-                    setState(() {
-                      themeSwitcher.switchTheme(theme);
-                    });
-                  }
-                },
-                items: AppTheme.values.map((theme) {
-                  return DropdownMenuItem<AppTheme>(
-                    value: theme,
-                    child: Text(theme.toString().split('.').last),
-                  );
-                }).toList(),
-              ),
-            ),
-          ],
-        ),
+        appBar: const EditorAppBar(),
         body: Row(
           children: [
             Expanded(
