@@ -62,6 +62,7 @@ class _FileDetailState extends State<FileDetail> {
                   name: name,
                   language: "",
                   code: content,
+                  path: widget.selectedFile!.path,
                 );
 
                 if (content != lastFileContent && !tabs.contains(newFile)) {

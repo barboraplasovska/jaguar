@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pingfrontend/components/file_detail/editor_model_style.dart';
 
@@ -75,8 +77,14 @@ class EditorModel extends ChangeNotifier {
     notify();
   }
 
-  void updateCodeOfIndex(int index, String? newCode) {
+  void updateCodeOfIndex(int index, String? newCode) async {
     allFiles[index].code = newCode;
+
+    var file = File(allFiles[index].path);
+
+    var sink = file.openWrite();
+    sink.write(allFiles[index].code);
+    sink.close();
   }
 
   void notify() => notifyListeners();
