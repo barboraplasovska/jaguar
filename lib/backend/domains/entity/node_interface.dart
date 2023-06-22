@@ -16,7 +16,7 @@ abstract class INode {
 
   List<INode> getChildren();
 
-  void setParent(INode parent);
+  void setParent(INode? parent);
 
   INode getParent();
 
