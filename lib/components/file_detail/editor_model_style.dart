@@ -75,7 +75,7 @@ class EditorModelStyle {
     this.editButtonName = "Edit",
     this.fontSizeOfFilename = 12,
     this.textStyleOfTextField = const TextStyle(
-      color: Colors.black87,
+      color: Color(0xFFF5F5F5),
       fontSize: 16,
       letterSpacing: 1.25,
       fontWeight: FontWeight.w500,

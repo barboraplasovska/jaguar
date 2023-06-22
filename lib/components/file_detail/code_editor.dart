@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
@@ -183,7 +184,9 @@ class _CodeEditorState extends State<CodeEditor> {
             bottom: 50,
           ),
           child: TextField(
-            decoration: const InputDecoration(border: InputBorder.none),
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+            ),
             autofocus: true,
             keyboardType: TextInputType.multiline,
             maxLines: null,
@@ -267,41 +270,42 @@ class _CodeEditorState extends State<CodeEditor> {
 
     /// We toggle the editor and the text field.
     Widget buildContentEditor() {
-      return model.isEditing
-          ? Stack(
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    // the toolbar
-                    // toolBar(),
-                    // Container of the EditableText
-                    Container(
-                      width: double.infinity,
-                      height: opt?.heightOfContainer,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          bottom: BorderSide(
-                            color: opt?.editorBorderColor.withOpacity(0.4) ??
-                                Colors.blue.withOpacity(0.4),
-                          ),
-                        ),
-                      ),
-                      child: buildEditableText(),
+      return //model.isEditing
+          //  ?
+          Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              // the toolbar
+              // toolBar(),
+              // Container of the EditableText
+              Container(
+                width: double.infinity,
+                height: opt?.heightOfContainer,
+                decoration: BoxDecoration(
+                  color: opt?.editorColor.withAlpha(200),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: opt?.editorBorderColor.withOpacity(0.4) ??
+                          Colors.blue.withOpacity(0.4),
                     ),
-                  ],
+                  ),
                 ),
-                // The OK button
-                editButton("OK", () {
-                  setState(() {
-                    model.updateCodeOfIndex(position ?? 0, newValue);
-                    model.toggleEditing();
-                    //FIXME: widget.onSubmit?.call(language, newValue);
-                  });
-                }),
-              ],
-            )
-          : Stack(
+                child: buildEditableText(),
+              ),
+            ],
+          ),
+          // The OK button
+          /* editButton("OK", () {
+            setState(() {
+              model.updateCodeOfIndex(position ?? 0, newValue);
+              model.toggleEditing();
+              //FIXME: widget.onSubmit?.call(language, newValue);
+            });
+          }),*/
+        ],
+      );
+      /* : Stack(
               children: <Widget>[
                 Container(
                   width: double.infinity,
@@ -336,13 +340,24 @@ class _CodeEditorState extends State<CodeEditor> {
                   });
                 }),
               ],
-            );
+            );*/
     }
 
     return Column(
       children: <Widget>[
         buildNavbar(),
-        buildContentEditor(),
+        RawKeyboardListener(
+          focusNode: FocusNode(),
+          onKey: (RawKeyEvent event) {
+            if (event.isKeyPressed(LogicalKeyboardKey.keyS) &&
+                (event.isControlPressed || event.isMetaPressed)) {
+              setState(() {
+                model.updateCodeOfIndex(position ?? 0, newValue);
+              });
+            }
+          },
+          child: buildContentEditor(),
+        ),
       ],
     );
   }
