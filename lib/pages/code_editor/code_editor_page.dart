@@ -49,8 +49,16 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
               builder: (context, fileProvider, _) {
                 return Expanded(
                   flex: 8,
-                  child: FileDetail(
-                    selectedFile: fileProvider.selectedFile,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(themeSwitcher.currentThemePicture),
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                    child: FileDetail(
+                      selectedFile: fileProvider.selectedFile,
+                    ),
                   ),
                 );
               },

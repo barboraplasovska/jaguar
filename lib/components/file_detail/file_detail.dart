@@ -64,7 +64,7 @@ class _FileDetailState extends State<FileDetail> {
                   code: content,
                 );
 
-                if (content != lastFileContent) {
+                if (content != lastFileContent && !tabs.contains(newFile)) {
                   lastFileContent = content;
                   tabs.insert(0, newFile);
                 }
