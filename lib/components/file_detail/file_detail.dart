@@ -1,9 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:path/path.dart' as path;
 
-class FileDetail extends StatelessWidget {
+import 'package:path/path.dart';
+
+import 'code_editor.dart';
+import 'editor_model.dart';
+import 'editor_model_style.dart';
+import 'file_editor.dart';
+
+class FileDetail extends StatefulWidget {
   final FileSystemEntity? selectedFile;
 
   const FileDetail({
@@ -11,26 +17,30 @@ class FileDetail extends StatelessWidget {
     this.selectedFile,
   });
 
-  Future<List<String>> readFile(FileSystemEntity fileEntity) async {
-    // Get the FileSystemEntity representing the file path
+  @override
+  State<FileDetail> createState() => _FileDetailState();
+}
 
+class _FileDetailState extends State<FileDetail> {
+  List<FileEditor> tabs = [];
+  String lastFileContent = "";
+
+  Future<String> readFile(FileSystemEntity fileEntity) async {
     try {
-      // Check if the entity is a file
       if (fileEntity is File) {
-        // Read the lines of the file
         List<String> lines = await fileEntity.readAsLines();
-        return lines;
+        return lines.join("\n");
       } else {
-        return ['Error: The provided entity is not a file.'];
+        return 'Error: The provided entity is not a file.';
       }
     } catch (e) {
-      return ['Error reading file:', e.toString()];
+      return 'Error reading file: ${e.toString()}';
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (selectedFile == null) {
+    if (widget.selectedFile == null) {
       return Container(
         alignment: Alignment.center,
         child: const Text(
@@ -39,27 +49,52 @@ class FileDetail extends StatelessWidget {
         ),
       );
     } else {
-      return FutureBuilder<List<String>>(
-        future: readFile(selectedFile!),
-        builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
-          if (snapshot.hasData) {
-            // Lines are available
-            List<String> lines = snapshot.data!;
-            return ListView.builder(
-              itemCount: lines.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(lines[index]),
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          return FutureBuilder<String>(
+            future: readFile(widget.selectedFile!),
+            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+              if (snapshot.hasData) {
+                // Lines are available
+                String content = snapshot.data!;
+                String name = basename(widget.selectedFile!.path);
+                FileEditor newFile = FileEditor(
+                  name: name,
+                  language: "",
+                  code: content,
                 );
-              },
-            );
-          } else if (snapshot.hasError) {
-            // Error occurred
-            return Text('Error: ${snapshot.error}');
-          } else {
-            // Future is still loading
-            return const CircularProgressIndicator();
-          }
+
+                if (content != lastFileContent) {
+                  lastFileContent = content;
+                  tabs.insert(0, newFile);
+                }
+
+                return CodeEditor(
+                  model: EditorModel(
+                    files: tabs,
+                    styleOptions: EditorModelStyle(
+                      heightOfContainer: constraints.maxHeight - 40,
+                      editorBorderColor: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                );
+                /*ListView.builder(
+                itemCount: lines.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text(lines[index]),
+                  );
+                },
+              );*/
+              } else if (snapshot.hasError) {
+                // Error occurred
+                return Text('Error: ${snapshot.error}');
+              } else {
+                // Future is still loading
+                return const CircularProgressIndicator();
+              }
+            },
+          );
         },
       );
     }
