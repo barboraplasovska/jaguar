@@ -55,7 +55,6 @@ class _FileDetailState extends State<FileDetail> {
             future: readFile(widget.selectedFile!),
             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
               if (snapshot.hasData) {
-                // Lines are available
                 String content = snapshot.data!;
                 String name = basename(widget.selectedFile!.path);
                 FileEditor newFile = FileEditor(
@@ -75,18 +74,11 @@ class _FileDetailState extends State<FileDetail> {
                     files: tabs,
                     styleOptions: EditorModelStyle(
                       heightOfContainer: constraints.maxHeight - 40,
+                      widthOfContainer: constraints.maxWidth,
                       editorBorderColor: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 );
-                /*ListView.builder(
-                itemCount: lines.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(lines[index]),
-                  );
-                },
-              );*/
               } else if (snapshot.hasError) {
                 // Error occurred
                 return Text('Error: ${snapshot.error}');

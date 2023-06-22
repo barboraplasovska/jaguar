@@ -1,14 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:pingfrontend/components/file_detail/editor_model_style.dart';
-
 import 'file_editor.dart';
 
-/// Use the EditorModel into CodeEditor in order to control the editor.
-///
-/// EditorModel extends ChangeNotifier because we use the provider package
-/// to simplify the work.
 class EditorModel extends ChangeNotifier {
   late int _currentPositionInFiles;
   bool _isEditing = false;
@@ -17,20 +11,9 @@ class EditorModel extends ChangeNotifier {
   EditorModelStyle? styleOptions;
 
   EditorModel({required List<FileEditor> files, this.styleOptions}) {
-    if (this.styleOptions == null) {
-      this.styleOptions = EditorModelStyle();
-    }
+    styleOptions ??= EditorModelStyle();
     _languages = [];
     _currentPositionInFiles = 0;
-    /*if (files.length == 0) {
-      files.add(
-        FileEditor(
-          name: "index.html",
-          language: "html",
-          code: "",
-        ),
-      );
-    }*/
     for (var file in files) {
       _languages.add(file.language);
     }

@@ -40,7 +40,7 @@ class NodeService implements INodeService {
     if (type == NodeType.folder) {
       Directory dir = newFile as Directory;
       for (FileSystemEntity child in dir.listSync(recursive: false)) {
-        INode childNode = create(newNode, basename(child.path),
+        create(newNode, basename(child.path),
             child is Directory ? NodeType.folder : NodeType.file);
       }
     }

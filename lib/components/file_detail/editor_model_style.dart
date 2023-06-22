@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/themes/fusion_theme.dart';
-
-import 'editor_theme.dart';
 
 class EditorModelStyle {
   final EdgeInsets padding;
 
   final double heightOfContainer;
 
-  final Map<String, TextStyle> theme;
+  final double widthOfContainer;
 
   final String fontFamily;
 
@@ -59,7 +56,7 @@ class EditorModelStyle {
   EditorModelStyle({
     this.padding = const EdgeInsets.all(15.0),
     this.heightOfContainer = 300,
-    this.theme = editorTheme,
+    this.widthOfContainer = 400,
     this.fontFamily = "monospace",
     this.letterSpacing,
     this.fontSize = 15,
