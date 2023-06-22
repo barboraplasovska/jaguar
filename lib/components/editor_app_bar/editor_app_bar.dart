@@ -16,12 +16,25 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
+        IconButton(
+          splashRadius: 20,
+          padding: EdgeInsets.zero,
+          onPressed: () => {},
+          icon: Icon(
+            Icons.play_arrow_sharp,
+            size: 30,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextButton(
             onPressed: () => {
               // FIXME: #13 open the folder and save the new project
             },
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(context).colorScheme.primary,
+            ),
             child: Text(
               'Open folder',
               style: TextStyle(
