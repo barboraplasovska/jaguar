@@ -1,6 +1,10 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../backend/domains/service/node_service/node_service.dart';
+import '../../backend/domains/service/project_service/project_service.dart';
+import '../../pages/code_editor/code_editor_page.dart';
 import '../../themes/theme_switcher.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -12,6 +16,9 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final themeSwitcher = Provider.of<ThemeSwitcher>(context);
+    NodeService nodeService = NodeService();
+    ProjectService projectService = ProjectService(nodeService);
+    String? result;
 
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
@@ -19,8 +26,19 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextButton(
-            onPressed: () => {
-              // FIXME: #13 open the folder and save the new project
+            onPressed: () async => {
+              result = await FilePicker.platform.getDirectoryPath(),
+              if (result != null)
+                {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CodeEditorPage(
+                        project: projectService.load(result!),
+                      ),
+                    ),
+                  )
+                },
             },
             child: Text(
               'Open folder',
