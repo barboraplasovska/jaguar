@@ -21,6 +21,7 @@ abstract class FeatureType {}
 
 abstract class Feature {
 
+
   late final FeatureType _type;
 
   FeatureType getType() {
@@ -30,4 +31,5 @@ abstract class Feature {
   Feature(this._type);
 
   Future<ExecutionReport> execute(IProject project, {List<String> additionalArguments = const []});
+
 }
