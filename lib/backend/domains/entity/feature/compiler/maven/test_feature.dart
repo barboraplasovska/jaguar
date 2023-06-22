@@ -1,8 +1,13 @@
+import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
 import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
 
 import 'maven_compiler.dart';
 
-class TestFeature extends EntityFeature {
+class TestFeature extends Feature {
+
+
+  TestFeature() : super(MavenFeature.test);
+
 
   Future<ExecutionReport> test(IProject project, List<String> additionalArguments) async {
     return await MavenCompiler.compile(project, 'test', additionalArguments: additionalArguments);

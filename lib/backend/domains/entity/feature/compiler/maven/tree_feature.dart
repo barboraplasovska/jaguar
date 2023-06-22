@@ -1,7 +1,12 @@
-import 'package:pingfrontend/backend/domains/entity/compiler/maven/maven_compiler.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
 import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
 
-class TreeFeature extends EntityFeature {
+import 'maven_compiler.dart';
+
+class TreeFeature extends Feature {
+
+  TreeFeature() : super(MavenFeature.tree);
+
 
   Future<ExecutionReport> tree(IProject project, List<String> additionalArguments) async {
     return await MavenCompiler.compile(project, 'dependency:tree', additionalArguments: additionalArguments);

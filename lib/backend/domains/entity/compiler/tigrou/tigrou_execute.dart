@@ -1,4 +1,0 @@
-
-class TigrouExecute extends EntityFeature {
-  
-}

@@ -21,14 +21,13 @@ abstract class FeatureType {}
 
 abstract class Feature {
 
-  late FeatureType type;
+  late final FeatureType _type;
 
   FeatureType getType() {
-    return type;
+    return _type;
   }
 
-  ExecutionReport execute(IProject project, Object params) {
-    return () => false;
-  }
+  Feature(this._type);
 
+  Future<ExecutionReport> execute(IProject project, {List<String> additionalArguments = const []});
 }

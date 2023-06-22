@@ -1,11 +1,12 @@
 import 'dart:io';
 
-import 'package:pingfrontend/backend/domains/entity/compiler/maven/maven_compiler.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/maven_compiler.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
 import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
 
-typedef ExecutionReport = bool Function();
+class ExecFeature extends Feature {
+  ExecFeature() : super(MavenFeature.exec);
 
-class ExecFeature extends EntityFeature {
   static Future<ExecutionReport> compile(IProject project, String command,
       {List<String> additionalArguments = const []}) async {
     ExecutionReport report = () => true;
@@ -24,5 +25,10 @@ class ExecFeature extends EntityFeature {
       report = () => false;
     }
     return report;
+  }
+
+  @override
+  Future<ExecutionReport> execute(IProject project, {List<String> additionalArguments = const []} ) async {
+    return await compile(project, "exec:java", additionalArguments: additionalArguments);
   }
 }
