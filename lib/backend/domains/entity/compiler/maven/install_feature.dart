@@ -5,7 +5,7 @@ import 'maven_compiler.dart';
 class InstallFeature extends EntityFeature {
 
   Future<ExecutionReport> install(IProject project, List<String> additionalArguments) async {
-    return await MavenCompiler.compile(project, 'install', additionalArguments);
+    return await MavenCompiler.compile(project, 'install', additionalArguments: additionalArguments);
   }
 
   @override

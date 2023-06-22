@@ -4,7 +4,7 @@ import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
 class PackageFeature extends EntityFeature {
 
   Future<ExecutionReport> package(IProject project, List<String> additionalArguments) async {
-    return await MavenCompiler.compile(project, 'package', additionalArguments);
+    return await MavenCompiler.compile(project, 'package', additionalArguments: additionalArguments);
   }
 
   @override

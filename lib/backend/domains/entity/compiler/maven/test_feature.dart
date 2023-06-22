@@ -5,7 +5,7 @@ import 'maven_compiler.dart';
 class TestFeature extends EntityFeature {
 
   Future<ExecutionReport> test(IProject project, List<String> additionalArguments) async {
-    return await MavenCompiler.compile(project, 'test', additionalArguments);
+    return await MavenCompiler.compile(project, 'test', additionalArguments: additionalArguments);
   }
 
   @override

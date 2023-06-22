@@ -4,7 +4,7 @@ import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
 class CleanFeature extends EntityFeature {
 
   Future<ExecutionReport> clean(IProject project, List<String> additionalArguments) async {
-    return await MavenCompiler.compile(project, 'clean', additionalArguments);
+    return await MavenCompiler.compile(project, 'clean', additionalArguments: additionalArguments);
   }
 
   @override
