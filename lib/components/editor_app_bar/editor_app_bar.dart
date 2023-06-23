@@ -1,4 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:pingfrontend/components/button/run_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../themes/theme_switcher.dart';
@@ -12,19 +14,15 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final themeSwitcher = Provider.of<ThemeSwitcher>(context);
+    final audioCache = AudioPlayer();
 
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
-        IconButton(
-          splashRadius: 20,
-          padding: EdgeInsets.zero,
-          onPressed: () => {},
-          icon: Icon(
-            Icons.play_arrow_sharp,
-            size: 30,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+        RunButton(
+          onPressed: () => {
+            //audioCache.play(AssetSource('sounds/pong.wav'))
+          }
         ),
         Padding(
           padding: const EdgeInsets.all(10),
