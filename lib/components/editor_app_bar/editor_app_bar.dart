@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
 import 'package:pingfrontend/components/button/run_button.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,10 @@ import '../../pages/code_editor/code_editor_page.dart';
 import '../../themes/theme_switcher.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const EditorAppBar({super.key});
+  Set<IAspect>? aspects;
+
+  EditorAppBar(Set<IAspect> aspects, {super.key});
+
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
