@@ -29,7 +29,7 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         RunButton(
           onPressed: () => {
-            audioPlayer.play(AssetSource('sounds/pong.wav'))
+            audioPlayer.play(AssetSource('sounds/tiger_roar.wav'))
           }
         ),
         Padding(
