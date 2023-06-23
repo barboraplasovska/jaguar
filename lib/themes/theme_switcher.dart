@@ -21,6 +21,19 @@ class ThemeSwitcher extends ChangeNotifier {
     }
   }
 
+  String get currentThemePicture {
+    switch (_currentTheme) {
+      case AppTheme.tiger:
+        return "assets/images/tiger.png";
+      case AppTheme.java:
+        return "assets/images/java.png";
+      case AppTheme.fusion:
+        return "assets/images/fusion.png";
+      default:
+        return "assets/images/fusion.png";
+    }
+  }
+
   AppTheme get currentThemeOption => _currentTheme;
 
   void switchTheme(AppTheme theme) {

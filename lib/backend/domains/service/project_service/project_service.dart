@@ -21,6 +21,8 @@ class  ProjectService implements IProjectService {
 
     INode rootNode = _nodeService.create(null, rootPath, NodeType.folder);
 
+    rootNode.setParent(null);
+
     return Project(rootNode, aspects);
   }
 

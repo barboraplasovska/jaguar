@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
+
 import 'package:pingfrontend/backend/domains/service/node_service/node_service.dart';
 import 'package:pingfrontend/pages/code_editor/code_editor_page.dart';
 

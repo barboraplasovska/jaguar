@@ -77,15 +77,18 @@ class _TreeViewState extends State<TreeView> {
         ),
       );
     } else {
-      return ListTile(
-        dense: true,
-        hoverColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-        title: Text(node.getName()),
-        onTap: () {
-          if (widget.onFileSelected != null) {
-            widget.onFileSelected!(node.getFile());
-          }
-        },
+      return Padding(
+        padding: EdgeInsets.only(left: 20 * level),
+        child: ListTile(
+          dense: true,
+          hoverColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+          title: Text(node.getName()),
+          onTap: () {
+            if (widget.onFileSelected != null) {
+              widget.onFileSelected!(node.getFile());
+            }
+          },
+        ),
       );
     }
   }
