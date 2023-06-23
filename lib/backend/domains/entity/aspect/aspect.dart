@@ -1,4 +1,13 @@
 import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/clean_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/compile_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/exec_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/install_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/package_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/test_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/maven/tree_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/tigrou/tigrou_compile_feature.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/compiler/tigrou/tigrou_execute_feature.dart';
 import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
 
 class Aspect implements IAspect {
@@ -6,18 +15,18 @@ class Aspect implements IAspect {
   late List<Feature> features;
 
   static final List<Feature> mavenFeatures = [
-    MavenFeature.clean,
-    MavenFeature.compile,
-    MavenFeature.exec,
-    MavenFeature.install,
-    MavenFeature.package,
-    MavenFeature.test,
-    MavenFeature.tree,
+    CleanFeature(),
+    CompileFeature(),
+    ExecFeature(),
+    InstallFeature(),
+    PackageFeature(),
+    TestFeature(),
+    TreeFeature(),
   ];
 
   static final List<Feature> tigrouFeatures = [
-    TigerFeature.compile,
-    TigerFeature.exec,
+    TigrouCompile(),
+    TigrouExecute(),
   ];
 
   Aspect(this.type) {
