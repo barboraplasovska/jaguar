@@ -42,8 +42,8 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
               if (aspect.type == AspectType.maven) {
                 audioPlayer.play(AssetSource('sounds/pouring-coffee.wav')),
                 for (feature in aspect.getFeatures()) {
-                  if (feature.type == MavenFeature.compile) {
-                    feature.execute(projectService.load(result!)),
+                  if (feature.getType() == MavenFeature.exec) {
+                     res = feature.execute(project),
                   }
                 }
               }
