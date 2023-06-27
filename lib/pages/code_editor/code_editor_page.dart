@@ -34,7 +34,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
       ],
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: EditorAppBar(widget.project!.getAspects()),
+        appBar: EditorAppBar(aspects: widget.project!.getAspects()),
         body: Row(
           children: [
             Expanded(

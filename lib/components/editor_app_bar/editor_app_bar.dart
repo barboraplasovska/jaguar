@@ -14,7 +14,7 @@ import '../../themes/theme_switcher.dart';
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   Set<IAspect>? aspects;
 
-  EditorAppBar(Set<IAspect> aspects, {super.key});
+  EditorAppBar({super.key, required this.aspects});
 
 
   @override
