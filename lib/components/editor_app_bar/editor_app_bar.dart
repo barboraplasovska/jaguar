@@ -3,6 +3,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
 import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
+import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
 import 'package:pingfrontend/components/button/run_button.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +13,9 @@ import '../../pages/code_editor/code_editor_page.dart';
 import '../../themes/theme_switcher.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
-  Set<IAspect>? aspects;
+  final IProject project;
 
-  EditorAppBar({super.key, required this.aspects});
+  const EditorAppBar({super.key, required this.project});
 
 
   @override
@@ -31,12 +32,13 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     var aspect;
     var feature;
+    var res;
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
         RunButton(
           onPressed: () => {
-            for (aspect in aspects!) {
+            for (aspect in project.getAspects()) {
               if (aspect.type == AspectType.maven) {
                 audioPlayer.play(AssetSource('sounds/pouring-coffee.wav')),
                 for (feature in aspect.getFeatures()) {
