@@ -24,7 +24,7 @@ class  ProjectService implements IProjectService {
       return File(fullPathToPom).existsSync();
   }
 
-  Future<Set<IAspect>> _loadAspects(String path) async {
+  Set<IAspect> _loadAspects(String path) {
     Set<IAspect> aspects = {};
 
     if (_isMavenProject(path)) {
@@ -38,7 +38,7 @@ class  ProjectService implements IProjectService {
 
   @override
   IProject load(String rootPath) {
-    Set<IAspect> aspects = _loadAspects(rootPath) as Set<IAspect>;
+    Set<IAspect> aspects = _loadAspects(rootPath);
 
     INode rootNode = _nodeService.create(null, rootPath, NodeType.folder);
 
