@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
 import 'package:pingfrontend/components/button/run_button.dart';
 import 'package:provider/provider.dart';
 
@@ -28,12 +29,26 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
     ProjectService projectService = ProjectService(nodeService);
     String? result;
 
+    var aspect;
+    var feature;
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
         RunButton(
           onPressed: () => {
-            audioPlayer.play(AssetSource('sounds/tiger_roar.wav'))
+            for (aspect in aspects!) {
+              if (aspect.type == AspectType.maven) {
+                audioPlayer.play(AssetSource('sounds/pouring-coffee.wav')),
+                for (feature in aspect.getFeatures()) {
+                  if (feature.type == MavenFeature.compile) {
+                    feature.execute(projectService.load(result!)),
+                  }
+                }
+              }
+              else if (aspect.type == AspectType.tigrou) {
+                audioPlayer.play(AssetSource('sounds/tiger_roar.wav'))
+              }
+            },
           }
         ),
         Padding(
