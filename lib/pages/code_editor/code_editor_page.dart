@@ -20,7 +20,6 @@ class CodeEditorPage extends StatefulWidget {
 }
 
 class _CodeEditorPageState extends State<CodeEditorPage> {
-
   @override
   Widget build(BuildContext context) {
     final themeSwitcher = Provider.of<ThemeSwitcher>(context);
@@ -40,6 +39,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
             Expanded(
               flex: 2,
               child: Container(
+                width: 300,
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: FileTree(
                   root: widget.project!.getRootNode(),

@@ -41,13 +41,7 @@ class _FileDetailState extends State<FileDetail> {
   @override
   Widget build(BuildContext context) {
     if (widget.selectedFile == null) {
-      return Container(
-        alignment: Alignment.center,
-        child: const Text(
-          'No file',
-          style: TextStyle(fontSize: 16),
-        ),
-      );
+      return Container();
     } else {
       return LayoutBuilder(
         builder: (context, constraints) {

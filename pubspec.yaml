@@ -39,6 +39,7 @@ dependencies:
   file_picker: ^4.1.0
   audioplayers: ^4.1.0
   path: ^1.8.3
+  flutter_code_editor: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,8 @@ flutter:
     - assets/images/java.png
     - assets/images/fusion.png
     - assets/sounds/
+    - assets/images/braises-transformed.jpeg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
