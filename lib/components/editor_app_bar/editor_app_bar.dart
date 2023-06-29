@@ -1,5 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
+import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
+import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
+import 'package:pingfrontend/components/button/run_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../backend/domains/service/node_service/node_service.dart';
@@ -8,7 +13,10 @@ import '../../pages/code_editor/code_editor_page.dart';
 import '../../themes/theme_switcher.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const EditorAppBar({super.key});
+  final IProject project;
+
+  const EditorAppBar({super.key, required this.project});
+
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -16,13 +24,35 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final themeSwitcher = Provider.of<ThemeSwitcher>(context);
+    final audioPlayer = AudioPlayer();
+
     NodeService nodeService = NodeService();
     ProjectService projectService = ProjectService(nodeService);
     String? result;
 
+    var aspect;
+    var feature;
+    var res;
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
+        RunButton(
+          onPressed: () => {
+            for (aspect in project.getAspects()) {
+              if (aspect.type == AspectType.maven) {
+                audioPlayer.play(AssetSource('sounds/pouring-coffee.wav')),
+                for (feature in aspect.getFeatures()) {
+                  if (feature.getType() == MavenFeature.exec) {
+                     res = feature.execute(project),
+                  }
+                }
+              }
+              else if (aspect.type == AspectType.tigrou) {
+                audioPlayer.play(AssetSource('sounds/tiger_roar.wav'))
+              }
+            },
+          }
+        ),
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextButton(
@@ -40,6 +70,9 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                   )
                 },
             },
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(context).colorScheme.primary,
+            ),
             child: Text(
               'Open folder',
               style: TextStyle(
