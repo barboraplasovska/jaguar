@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 
-import 'package:pingfrontend/components/file_detail/editor_model_style.dart';
+import 'package:pingfrontend/components/code_editor/editor_model_style.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
 import 'package:highlight/languages/java.dart';
 
+import '../popups/unsaved_file_popup.dart';
 import 'editor_model.dart';
 import 'file_editor.dart';
 
@@ -100,52 +101,10 @@ class _CodeEditorState extends State<CodeEditor> {
       await showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Unsaved file!'),
-            content: Text('Do you want to save the file?'),
-            actions: [
-              ElevatedButton(
-                onPressed: () {
-                  model.updateCodeOfIndex(position ?? 0, controller.fullText);
-                  Navigator.of(context).pop();
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        10), // Adjust the radius as desired
-                  ),
-                  backgroundColor: Theme.of(context)
-                      .colorScheme
-                      .primaryContainer, // Set the background color to orange
-                ),
-                child: Text(
-                  'Save it',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        10), // Adjust the radius as desired
-                  ),
-                  backgroundColor: Theme.of(context)
-                      .colorScheme
-                      .primary, // Set the background color to orange
-                ),
-                child: Text(
-                  'Close without saving',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-                ),
-              ),
-            ],
+          return UnsavedFilePopup(
+            model: model,
+            position: position,
+            controller: controller,
           );
         },
       );

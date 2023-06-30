@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:path/path.dart';
 
-import 'code_editor.dart';
-import 'editor_model.dart';
-import 'editor_model_style.dart';
-import 'file_editor.dart';
+import '../code_editor/code_editor.dart';
+import '../code_editor/editor_model.dart';
+import '../code_editor/editor_model_style.dart';
+import '../code_editor/file_editor.dart';
 
 class FileDetail extends StatefulWidget {
   final FileSystemEntity? selectedFile;
