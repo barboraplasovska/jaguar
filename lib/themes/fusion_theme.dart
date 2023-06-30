@@ -7,7 +7,7 @@ ThemeData _fusionTheme() {
 
   return base.copyWith(
     colorScheme: base.colorScheme.copyWith(
-      primary: const Color(0xFFFF7F11),
+      primary: const Color(0xFFAC3931),
       onPrimary: const Color(0xFF050401),
       secondary: const Color(0xFF303036),
       onSecondary: const Color(0xFFF5F5F5),
