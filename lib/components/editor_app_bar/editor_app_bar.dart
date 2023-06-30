@@ -5,12 +5,14 @@ import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/backend/domains/entity/feature/feature.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
 import 'package:ping/components/buttons/run_button.dart';
+import 'package:ping/pages/settings/settings_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../backend/domains/service/node_service/node_service.dart';
 import '../../backend/domains/service/project_service/project_service.dart';
 import '../../pages/code_editor/code_editor_page.dart';
 import '../../themes/theme_switcher.dart';
+import '../buttons/settings_button.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IProject project;
@@ -85,19 +87,15 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(10),
-          child: DropdownButton<AppTheme>(
-            value: themeSwitcher.currentThemeOption,
-            onChanged: (AppTheme? theme) {
-              if (theme != null) {
-                themeSwitcher.switchTheme(theme);
-              }
-            },
-            items: AppTheme.values.map((theme) {
-              return DropdownMenuItem<AppTheme>(
-                value: theme,
-                child: Text(theme.toString().split('.').last),
+          child: SettingsButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
               );
-            }).toList(),
+            },
           ),
         ),
       ],
