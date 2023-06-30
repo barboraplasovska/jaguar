@@ -17,7 +17,6 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const EditorAppBar({super.key, required this.project});
 
-
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
@@ -32,27 +31,32 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     var aspect;
     var feature;
-    var res;
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
         RunButton(
-          onPressed: () => {
-            for (aspect in project.getAspects()) {
-              if (aspect.type == AspectType.maven) {
-                audioPlayer.play(AssetSource('sounds/pouring-coffee.wav')),
-                for (feature in aspect.getFeatures()) {
-                  if (feature.getType() == MavenFeature.exec) {
-                     res = feature.execute(project),
-                  }
-                }
-              }
-              else if (aspect.type == AspectType.tigrou) {
-                audioPlayer.play(AssetSource('sounds/tiger_roar.wav'))
-              }
-            },
-          }
-        ),
+            onPressed: () async => {
+                  for (aspect in project.getAspects())
+                    {
+                      if (aspect.type == AspectType.maven)
+                        {
+                          audioPlayer
+                              .play(AssetSource('sounds/pouring-coffee.wav')),
+                          for (feature in aspect.getFeatures())
+                            {
+                              if (feature.getType() == MavenFeature.exec)
+                                {
+                                  feature.execute(project),
+                                }
+                            }
+                        }
+                      else if (aspect.type == AspectType.tigrou)
+                        {
+                          audioPlayer
+                              .play(AssetSource('sounds/tiger_roar.wav')),
+                        }
+                    },
+                }),
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextButton(
