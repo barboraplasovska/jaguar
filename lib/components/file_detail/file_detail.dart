@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:path/path.dart';
-import 'package:pingfrontend/components/output_box/output_box.dart';
+import 'package:ping/components/output_box/output_box.dart';
 
 import '../../backend/domains/entity/project_interface.dart';
 import '../code_editor/code_editor.dart';

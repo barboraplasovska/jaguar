@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
+import 'package:ping/backend/domains/entity/feature/feature.dart';
+import 'package:ping/backend/domains/entity/project_interface.dart';
 
 class MavenCompiler {
   static Future<ExecutionReport> compile(IProject project, String command,

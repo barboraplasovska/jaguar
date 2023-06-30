@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/service/node_service/node_service.dart';
-import 'package:pingfrontend/pages/code_editor/code_editor_page.dart';
+import 'package:ping/backend/domains/service/node_service/node_service.dart';
+import 'package:ping/pages/code_editor/code_editor_page.dart';
 
 import 'package:file_picker/file_picker.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/starter_page/starter_page.dart';
+import 'pages/starter/starter_page.dart';
 import 'themes/theme_switcher.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ping',
       theme: Provider.of<ThemeSwitcher>(context).currentTheme,
       home: const StarterPage(),
     );
