@@ -35,6 +35,9 @@ class _TreeViewState extends State<TreeView> {
     if (node.isFolder()) {
       bool isExpanded = expandedNodes.contains(node);
 
+      List<INode> sortedChildren = List.from(node.getChildren());
+      sortedChildren.sort((a, b) => a.getName().compareTo(b.getName()));
+
       return Container(
         padding: EdgeInsets.only(left: 20 * level),
         child: Column(
@@ -64,8 +67,7 @@ class _TreeViewState extends State<TreeView> {
               },
             ),
             if (isExpanded)
-              ...node
-                  .getChildren()
+              ...sortedChildren
                   .map(
                     (child) => _buildNode(
                       child,
