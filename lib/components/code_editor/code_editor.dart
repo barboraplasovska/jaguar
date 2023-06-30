@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 
-import 'package:pingfrontend/components/code_editor/editor_model_style.dart';
+import 'package:ping/components/code_editor/editor_model_style.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
 import 'package:highlight/languages/java.dart';
 
@@ -100,6 +100,7 @@ class _CodeEditorState extends State<CodeEditor> {
     Future<void> showPopUp(BuildContext context) async {
       await showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return UnsavedFilePopup(
             model: model,

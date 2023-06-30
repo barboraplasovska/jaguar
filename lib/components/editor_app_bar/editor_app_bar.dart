@@ -1,10 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
-import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
-import 'package:pingfrontend/components/buttons/run_button.dart';
+import 'package:ping/backend/domains/entity/aspect_interface.dart';
+import 'package:ping/backend/domains/entity/feature/feature.dart';
+import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:ping/components/buttons/run_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../backend/domains/service/node_service/node_service.dart';

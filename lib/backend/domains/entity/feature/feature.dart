@@ -1,4 +1,4 @@
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
+import 'package:ping/backend/domains/entity/project_interface.dart';
 
 typedef ExecutionReport = bool Function();
 
@@ -20,8 +20,6 @@ enum TigerFeature implements FeatureType {
 abstract class FeatureType {}
 
 abstract class Feature {
-
-
   late final FeatureType _type;
 
   FeatureType getType() {
@@ -30,6 +28,6 @@ abstract class Feature {
 
   Feature(this._type);
 
-  Future<ExecutionReport> execute(IProject project, {List<String> additionalArguments = const []});
-
+  Future<ExecutionReport> execute(IProject project,
+      {List<String> additionalArguments = const []});
 }

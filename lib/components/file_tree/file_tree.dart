@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/node_interface.dart';
 import 'package:provider/provider.dart';
 
+import '../../backend/domains/entity/node_interface.dart';
 import 'file_provider.dart';
 import 'tree_view.dart';
 

@@ -1,4 +1,4 @@
-import 'package:pingfrontend/backend/domains/entity/feature/feature.dart';
+import 'package:ping/backend/domains/entity/feature/feature.dart';
 
 enum AspectType {
   maven,
