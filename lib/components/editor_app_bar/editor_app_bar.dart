@@ -1,17 +1,11 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/backend/domains/entity/feature/feature.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:ping/components/buttons/open_project_button.dart';
 import 'package:ping/components/buttons/run_button.dart';
 import 'package:ping/pages/settings/settings_page.dart';
-import 'package:provider/provider.dart';
-
-import '../../backend/domains/service/node_service/node_service.dart';
-import '../../backend/domains/service/project_service/project_service.dart';
-import '../../pages/code_editor/code_editor_page.dart';
-import '../../themes/theme_switcher.dart';
 import '../buttons/settings_button.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -24,12 +18,7 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeSwitcher = Provider.of<ThemeSwitcher>(context);
     final audioPlayer = AudioPlayer();
-
-    NodeService nodeService = NodeService();
-    ProjectService projectService = ProjectService(nodeService);
-    String? result;
 
     var aspect;
     var feature;
@@ -57,33 +46,9 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                         {audioPlayer.play(AssetSource('sounds/tiger_roar.wav'))}
                     },
                 }),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: TextButton(
-            onPressed: () async => {
-              result = await FilePicker.platform.getDirectoryPath(),
-              if (result != null)
-                {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CodeEditorPage(
-                        project: projectService.load(result!),
-                      ),
-                    ),
-                  )
-                },
-            },
-            style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.primary,
-            ),
-            child: Text(
-              'Open folder',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-            ),
-          ),
+        const OpenProjectButton(
+          buttonStyle: OPButtonStyle.textButton,
+          pushReplacement: true,
         ),
         Padding(
           padding: const EdgeInsets.all(10),
