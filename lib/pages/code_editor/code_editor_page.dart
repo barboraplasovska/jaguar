@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
-import 'package:pingfrontend/components/file_tree/file_tree.dart';
 import 'package:provider/provider.dart';
 
+import '../../backend/domains/entity/project_interface.dart';
 import '../../components/editor_app_bar/editor_app_bar.dart';
 import '../../components/file_detail/file_detail.dart';
 import '../../components/file_tree/file_provider.dart';
+import '../../components/file_tree/file_tree.dart';
 import '../../themes/theme_switcher.dart';
 
 class CodeEditorPage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/service/shared_prefs_handler.dart';
+import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
 
 class SaveTigerPathPopup extends StatelessWidget {
   const SaveTigerPathPopup({super.key});

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
-import 'package:pingfrontend/backend/domains/service/node_service/node_service.dart';
-import 'package:pingfrontend/backend/domains/service/shared_prefs_handler.dart';
-import 'package:pingfrontend/pages/code_editor/code_editor_page.dart';
-import 'package:provider/provider.dart';
+import 'package:ping/backend/domains/service/node_service/node_service.dart';
+import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
+import 'package:ping/pages/code_editor/code_editor_page.dart';
 
 import 'package:file_picker/file_picker.dart';
 
 import '../../backend/domains/service/project_service/project_service.dart';
 import '../../components/popups/save_tiger_path_popup.dart';
-import '../../themes/theme_switcher.dart';
 
 class StarterPage extends StatefulWidget {
   const StarterPage({super.key});
@@ -94,8 +91,6 @@ class _StarterPageState extends State<StarterPage> {
               },
             );
           });
-        } else if (!snapshot.hasData) {
-          print("doesnt have data");
         }
         return buildStarterPage();
       },
