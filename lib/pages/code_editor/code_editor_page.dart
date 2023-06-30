@@ -59,6 +59,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
                     ),
                     child: FileDetail(
                       selectedFile: fileProvider.selectedFile,
+                      project: widget.project,
                     ),
                   ),
                 );

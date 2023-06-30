@@ -22,12 +22,11 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     var aspect;
     var feature;
-    var res;
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
         RunButton(
-            onPressed: () => {
+            onPressed: () async => {
                   for (aspect in project.getAspects())
                     {
                       if (aspect.type == AspectType.maven)
@@ -38,15 +37,18 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                             {
                               if (feature.getType() == MavenFeature.exec)
                                 {
-                                  res = feature.execute(project),
+                                  feature.execute(project),
                                 }
                             }
                         }
                       else if (aspect.type == AspectType.tigrou)
-                        {audioPlayer.play(AssetSource('sounds/tiger_roar.wav'))}
+                        {
+                          audioPlayer
+                              .play(AssetSource('sounds/tiger_roar.wav')),
+                        }
                     },
                 }),
-        const OpenProjectButton(
+        OpenProjectButton(
           buttonStyle: OPButtonStyle.textButton,
           pushReplacement: true,
         ),
