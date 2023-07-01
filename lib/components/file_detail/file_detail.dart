@@ -3,18 +3,22 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:path/path.dart';
+import 'package:ping/components/output_box/output_box.dart';
 
-import 'code_editor.dart';
-import 'editor_model.dart';
-import 'editor_model_style.dart';
-import 'file_editor.dart';
+import '../../backend/domains/entity/project_interface.dart';
+import '../code_editor/code_editor.dart';
+import '../code_editor/editor_model.dart';
+import '../code_editor/editor_model_style.dart';
+import '../code_editor/file_editor.dart';
 
 class FileDetail extends StatefulWidget {
   final FileSystemEntity? selectedFile;
+  final IProject? project;
 
   const FileDetail({
     super.key,
     this.selectedFile,
+    required this.project,
   });
 
   @override
@@ -38,16 +42,9 @@ class _FileDetailState extends State<FileDetail> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget buildFileDetail() {
     if (widget.selectedFile == null) {
-      return Container(
-        alignment: Alignment.center,
-        child: const Text(
-          'No file',
-          style: TextStyle(fontSize: 16),
-        ),
-      );
+      return Container();
     } else {
       return LayoutBuilder(
         builder: (context, constraints) {
@@ -73,7 +70,7 @@ class _FileDetailState extends State<FileDetail> {
                   model: EditorModel(
                     files: tabs,
                     styleOptions: EditorModelStyle(
-                      heightOfContainer: constraints.maxHeight - 40,
+                      heightOfContainer: constraints.maxHeight - 65,
                       widthOfContainer: constraints.maxWidth,
                       editorBorderColor: Theme.of(context).colorScheme.primary,
                     ),
@@ -91,5 +88,18 @@ class _FileDetailState extends State<FileDetail> {
         },
       );
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        buildFileDetail(),
+        OutputBox(
+          outputText: "text",
+          project: widget.project,
+        ),
+      ],
+    );
   }
 }

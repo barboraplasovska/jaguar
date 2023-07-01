@@ -1,9 +1,8 @@
-import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
-import 'package:pingfrontend/backend/domains/entity/node_interface.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
+import 'package:ping/backend/domains/entity/aspect_interface.dart';
+import 'package:ping/backend/domains/entity/node_interface.dart';
+import 'package:ping/backend/domains/entity/project_interface.dart';
 
 class Project implements IProject {
-
   late final INode _rootNode;
   late final Set<IAspect> _aspects;
 

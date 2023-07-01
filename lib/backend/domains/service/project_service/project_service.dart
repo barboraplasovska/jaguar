@@ -1,13 +1,15 @@
+import 'dart:core';
+import 'dart:io';
 
-import 'package:pingfrontend/backend/domains/entity/aspect_interface.dart';
-import 'package:pingfrontend/backend/domains/entity/node_interface.dart';
-import 'package:pingfrontend/backend/domains/entity/project/project.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
-import 'package:pingfrontend/backend/domains/service/node_service_interface.dart';
-import 'package:pingfrontend/backend/domains/service/project_service_interface.dart';
+import 'package:ping/backend/domains/entity/aspect/aspect.dart';
+import 'package:ping/backend/domains/entity/aspect_interface.dart';
+import 'package:ping/backend/domains/entity/node_interface.dart';
+import 'package:ping/backend/domains/entity/project/project.dart';
+import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:ping/backend/domains/service/node_service_interface.dart';
+import 'package:ping/backend/domains/service/project_service_interface.dart';
 
-class  ProjectService implements IProjectService {
-
+class ProjectService implements IProjectService {
   late final INodeService _nodeService;
 
   @override
@@ -15,9 +17,26 @@ class  ProjectService implements IProjectService {
     return _nodeService;
   }
 
+  static bool _isMavenProject(String path) {
+    String fullPathToPom = "$path/pom.xml";
+    return File(fullPathToPom).existsSync();
+  }
+
+  Set<IAspect> _loadAspects(String path) {
+    Set<IAspect> aspects = {};
+
+    if (_isMavenProject(path)) {
+      aspects.add(Aspect(AspectType.maven));
+    } else {
+      aspects.add(Aspect(AspectType.tigrou));
+    }
+
+    return aspects;
+  }
+
   @override
   IProject load(String rootPath) {
-    Set<IAspect> aspects = {};
+    Set<IAspect> aspects = _loadAspects(rootPath);
 
     INode rootNode = _nodeService.create(null, rootPath, NodeType.folder);
 

@@ -35,8 +35,11 @@ class _TreeViewState extends State<TreeView> {
     if (node.isFolder()) {
       bool isExpanded = expandedNodes.contains(node);
 
+      List<INode> sortedChildren = List.from(node.getChildren());
+      sortedChildren.sort((a, b) => a.getName().compareTo(b.getName()));
+
       return Container(
-        padding: EdgeInsets.only(left: 20 * level),
+        padding: EdgeInsets.only(left: 5 * level),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,27 +48,32 @@ class _TreeViewState extends State<TreeView> {
               hoverColor:
                   Theme.of(context).colorScheme.primary.withOpacity(0.2),
               horizontalTitleGap: 0,
-              contentPadding: const EdgeInsets.only(left: 10),
-              leading: Icon(
-                isExpanded
-                    ? Icons.keyboard_arrow_down
-                    : Icons.keyboard_arrow_right,
-                size: 20,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              title: Text(
-                node.getName(),
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+              title: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 5),
+                    child: Icon(
+                      isExpanded
+                          ? Icons.keyboard_arrow_down
+                          : Icons.keyboard_arrow_right,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  Text(
+                    node.getName(),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ],
               ),
               onTap: () {
                 toggleExpansion(node);
               },
             ),
             if (isExpanded)
-              ...node
-                  .getChildren()
+              ...sortedChildren
                   .map(
                     (child) => _buildNode(
                       child,
@@ -78,7 +86,7 @@ class _TreeViewState extends State<TreeView> {
       );
     } else {
       return Padding(
-        padding: EdgeInsets.only(left: 20 * level),
+        padding: EdgeInsets.only(left: 5 * level),
         child: ListTile(
           dense: true,
           hoverColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),

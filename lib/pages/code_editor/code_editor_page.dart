@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
-import 'package:pingfrontend/components/file_tree/file_tree.dart';
 import 'package:provider/provider.dart';
 
+import '../../backend/domains/entity/project_interface.dart';
 import '../../components/editor_app_bar/editor_app_bar.dart';
 import '../../components/file_detail/file_detail.dart';
 import '../../components/file_tree/file_provider.dart';
+import '../../components/file_tree/file_tree.dart';
 import '../../themes/theme_switcher.dart';
 
 class CodeEditorPage extends StatefulWidget {
@@ -20,7 +20,6 @@ class CodeEditorPage extends StatefulWidget {
 }
 
 class _CodeEditorPageState extends State<CodeEditorPage> {
-
   @override
   Widget build(BuildContext context) {
     final themeSwitcher = Provider.of<ThemeSwitcher>(context);
@@ -34,12 +33,13 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
       ],
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: const EditorAppBar(),
+        appBar: EditorAppBar(project: widget.project!),
         body: Row(
           children: [
             Expanded(
               flex: 2,
               child: Container(
+                width: 300,
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: FileTree(
                   root: widget.project!.getRootNode(),
@@ -59,6 +59,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
                     ),
                     child: FileDetail(
                       selectedFile: fileProvider.selectedFile,
+                      project: widget.project,
                     ),
                   ),
                 );
