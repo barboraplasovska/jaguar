@@ -31,12 +31,20 @@ class _TreeViewState extends State<TreeView> {
     });
   }
 
-  Widget _buildNode(INode node, {double level = 0}) {
+  Widget _buildNode(INode node, {double level = 0, String? folderName}) {
     if (node.isFolder()) {
       bool isExpanded = expandedNodes.contains(node);
 
       List<INode> sortedChildren = List.from(node.getChildren());
       sortedChildren.sort((a, b) => a.getName().compareTo(b.getName()));
+
+      String nodeName =
+          folderName != null ? '$folderName.${node.getName()}' : node.getName();
+
+      if (sortedChildren.length == 1) {
+        return _buildNode(sortedChildren[0],
+            level: level, folderName: nodeName);
+      }
 
       return Container(
         padding: EdgeInsets.only(left: 5 * level),
@@ -61,7 +69,7 @@ class _TreeViewState extends State<TreeView> {
                     ),
                   ),
                   Text(
-                    node.getName(),
+                    nodeName,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
                     ),
