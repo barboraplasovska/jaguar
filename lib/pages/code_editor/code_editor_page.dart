@@ -31,19 +31,6 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
     return AppTheme.fusion;
   }
 
-  /*@override
-  void initState() {
-    super.initState();
-    final themeSwitcher = Provider.of<ThemeSwitcher>(context);
-    Future.delayed(Duration.zero, () {
-      if (mounted) {
-        setState(() {
-          themeSwitcher.switchTheme(setProjectTheme(widget.project!));
-        });
-      }
-    });
-  }*/
-
   @override
   Widget build(BuildContext context) {
     final themeSwitcher = Provider.of<ThemeSwitcher>(context);

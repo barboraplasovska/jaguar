@@ -11,43 +11,128 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool isEditing = false;
-  TextEditingController pathController = TextEditingController();
+  bool isEditingTigerPath = false;
+  TextEditingController tigerPathController = TextEditingController();
+
+  bool isEditingJavaOptions = false;
+  TextEditingController javaOptionsController = TextEditingController();
+
+  bool isEditingTigerOptions = false;
+  TextEditingController tigerOptionsController = TextEditingController();
 
   Future<void> loadTigerPath() async {
     String path = await getTigerPath();
     setState(() {
-      pathController.text = path;
+      tigerPathController.text = path;
+    });
+  }
+
+  Future<void> loadTigerOptions() async {
+    String res = await getTigerCompilationOptions();
+    setState(() {
+      tigerOptionsController.text = res;
+    });
+  }
+
+  Future<void> loadJavaOptions() async {
+    String res = await getJavaCompilationOptions();
+    setState(() {
+      javaOptionsController.text = res;
     });
   }
 
   @override
   void initState() {
     loadTigerPath();
+    loadTigerOptions();
+    loadJavaOptions();
     super.initState();
   }
 
   @override
   void dispose() {
-    pathController.dispose();
     super.dispose();
+  }
+
+  Widget buildEditableTextField(String title, bool isEditing,
+      TextEditingController controller, Function() toggleEdit) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 18,
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(width: 10),
+          SizedBox(
+            width: 400,
+            child: TextField(
+              enabled: isEditing,
+              controller: controller,
+            ),
+          ),
+          const SizedBox(width: 10),
+          ElevatedButton(
+            onPressed: toggleEdit,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: isEditing
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.tertiary,
+            ),
+            child: Text(
+              isEditing ? 'Save' : 'Edit',
+              style: TextStyle(
+                  color: isEditing
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.onTertiary),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final themeSwitcher = Provider.of<ThemeSwitcher>(context);
-    final focusNode = FocusNode();
 
-    void toggleEdit() {
+    void toggleEditTigerPath() {
       setState(() {
-        if (isEditing) {
-          setTigerPath(pathController.text);
+        if (isEditingTigerPath) {
+          setTigerPath(tigerPathController.text);
         }
-        isEditing = !isEditing;
-        if (!isEditing) {
-          // pathController.clear();
+        isEditingTigerPath = !isEditingTigerPath;
+        if (!isEditingTigerPath) {
           FocusScope.of(context).unfocus();
-          focusNode.requestFocus();
+        }
+      });
+    }
+
+    void toggleEditTigerOptions() {
+      setState(() {
+        if (isEditingTigerOptions) {
+          setTigerCompilationOptions(tigerOptionsController.text);
+        }
+        isEditingTigerOptions = !isEditingTigerOptions;
+        if (!isEditingTigerOptions) {
+          FocusScope.of(context).unfocus();
+        }
+      });
+    }
+
+    void toggleEditJavaOptions() {
+      setState(() {
+        if (isEditingJavaOptions) {
+          setJavaCompilationOptions(javaOptionsController.text);
+        }
+        isEditingJavaOptions = !isEditingJavaOptions;
+        if (!isEditingJavaOptions) {
+          FocusScope.of(context).unfocus();
         }
       });
     }
@@ -108,45 +193,34 @@ class _SettingsPageState extends State<SettingsPage> {
               ],
             ),
           ),
+          buildEditableTextField(
+            "Tiger path",
+            isEditingTigerPath,
+            tigerPathController,
+            toggleEditTigerPath,
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Row(
-              children: [
-                Text(
-                  'Tiger path',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                SizedBox(
-                  width: 400,
-                  child: TextField(
-                    focusNode: focusNode,
-                    enabled: isEditing,
-                    controller: pathController,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: toggleEdit,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: isEditing
-                        ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.tertiary,
-                  ),
-                  child: Text(
-                    isEditing ? 'Save' : 'Edit',
-                    style: TextStyle(
-                        color: isEditing
-                            ? Theme.of(context).colorScheme.onPrimary
-                            : Theme.of(context).colorScheme.onTertiary),
-                  ),
-                ),
-              ],
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              "Compilation options",
+              style: TextStyle(
+                fontSize: 22,
+                color: Theme.of(context).colorScheme.tertiary,
+                fontWeight: FontWeight.w500,
+              ),
             ),
+          ),
+          buildEditableTextField(
+            "Tiger",
+            isEditingTigerOptions,
+            tigerOptionsController,
+            toggleEditTigerOptions,
+          ),
+          buildEditableTextField(
+            "Java",
+            isEditingJavaOptions,
+            javaOptionsController,
+            toggleEditJavaOptions,
           ),
         ],
       ),
