@@ -5,8 +5,8 @@ import 'package:ping/backend/domains/entity/feature/feature.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
 import 'package:ping/components/buttons/run_button.dart';
+import 'package:ping/components/buttons/settings_button.dart';
 import 'package:ping/pages/settings/settings_page.dart';
-import '../buttons/settings_button.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IProject project;
@@ -22,6 +22,7 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     var aspect;
     var feature;
+    var path;
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
@@ -45,6 +46,11 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                         {
                           audioPlayer
                               .play(AssetSource('sounds/tiger_roar.wav')),
+                          for (feature in aspect.getFeatures())
+                            {
+                              path = selectedFile?.path,
+                              feature.execute(project,additionalArguments : [path].cast<String>()),
+                            }
                         }
                     },
                 }),
