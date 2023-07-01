@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/service/node_service/node_service.dart';
 import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
+import 'package:ping/themes/theme_switcher.dart';
 import '../../backend/domains/service/project_service/project_service.dart';
 import '../../components/popups/save_tiger_path_popup.dart';
 
 class StarterPage extends StatefulWidget {
-  const StarterPage({super.key});
+  final ThemeSwitcher themeSwitcher;
+  const StarterPage({
+    super.key,
+    required this.themeSwitcher,
+  });
 
   @override
   State<StarterPage> createState() => _StarterPageState();
@@ -34,11 +39,11 @@ class _StarterPageState extends State<StarterPage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(10),
               child: Text("Welcome to our super chuper IDE.",
                   style: TextStyle(fontSize: 25)),
@@ -46,6 +51,7 @@ class _StarterPageState extends State<StarterPage> {
             OpenProjectButton(
               buttonStyle: OPButtonStyle.elevatedButton,
               pushReplacement: false,
+              themeSwitcher: widget.themeSwitcher,
             ),
           ],
         ),

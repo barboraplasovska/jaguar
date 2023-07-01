@@ -19,10 +19,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeSwitcher themeSwitcher = Provider.of<ThemeSwitcher>(context);
     return MaterialApp(
       title: 'Ping',
-      theme: Provider.of<ThemeSwitcher>(context).currentTheme,
-      home: const StarterPage(),
+      theme: themeSwitcher.currentTheme,
+      home: StarterPage(themeSwitcher: themeSwitcher),
     );
   }
 }
