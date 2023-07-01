@@ -35,3 +35,33 @@ void setJavaCompilationOptions(String path) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString("javaCompilationOptions", path);
 }
+
+Future<List<String>> getPreviousProjects() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  List<String>? projects = prefs.getStringList('previousProjects');
+  return projects ?? [];
+}
+
+bool includesProject(List<String> projects, String project) {
+  for (var p in projects) {
+    if (p == project) {
+      return true;
+    }
+  }
+  return false;
+}
+
+void addPreviousProject(String project) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  List<String> currentProjects = await getPreviousProjects();
+  if (currentProjects.length > 10) {
+    currentProjects.removeAt(0);
+  }
+  currentProjects.add(project);
+
+  if (!includesProject(currentProjects, project)) {
+    await prefs.setStringList('previousProjects', currentProjects);
+  }
+}
