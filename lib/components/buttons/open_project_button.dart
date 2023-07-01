@@ -71,7 +71,7 @@ class _OpenProjectButtonState extends State<OpenProjectButton> {
             {
               project = projectService.load(result!),
               widget.themeSwitcher.switchTheme(setProjectTheme(project)),
-              addPreviousProject(project.getRootNode().getPath()),
+              await addPreviousProject(project.getRootNode().getPath()),
               if (widget.pushReplacement)
                 {
                   Navigator.pushReplacement(

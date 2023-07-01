@@ -79,7 +79,7 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
               });
             },
             decoration: const InputDecoration(
-              labelText: 'Search',
+              labelText: 'Search projects',
               prefixIcon: Icon(Icons.search),
             ),
           ),
@@ -99,7 +99,8 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
                       iproject = projectService.load(result!),
                       widget.themeSwitcher
                           .switchTheme(setProjectTheme(iproject)),
-                      addPreviousProject(iproject.getRootNode().getPath()),
+                      await addPreviousProject(
+                          iproject.getRootNode().getPath()),
                       Navigator.push(
                         context,
                         MaterialPageRoute(

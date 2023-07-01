@@ -52,16 +52,16 @@ bool includesProject(List<String> projects, String project) {
   return false;
 }
 
-void addPreviousProject(String project) async {
+Future<void> addPreviousProject(String project) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   List<String> currentProjects = await getPreviousProjects();
   if (currentProjects.length > 10) {
     currentProjects.removeAt(0);
   }
-  currentProjects.add(project);
 
   if (!includesProject(currentProjects, project)) {
+    currentProjects.add(project);
     await prefs.setStringList('previousProjects', currentProjects);
   }
 }
