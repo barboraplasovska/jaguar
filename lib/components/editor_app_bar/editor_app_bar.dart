@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
@@ -10,8 +12,9 @@ import 'package:ping/pages/settings/settings_page.dart';
 
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IProject project;
+  final FileSystemEntity? selectedFile;
 
-  const EditorAppBar({super.key, required this.project});
+  const EditorAppBar({super.key, required this.project, required this.selectedFile,});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

@@ -31,7 +31,9 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
           value: themeSwitcher,
         ),
       ],
-      child: Scaffold(
+      child: Consumer<FileProvider>(
+        builder: (context, fileProvider, _) {
+      return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: EditorAppBar(project: widget.project!, selectedFile: fileProvider.selectedFile,),
         body: Row(
@@ -46,9 +48,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
                 ),
               ),
             ),
-            Consumer<FileProvider>(
-              builder: (context, fileProvider, _) {
-                return Expanded(
+            Expanded(
                   flex: 8,
                   child: Container(
                     decoration: BoxDecoration(
@@ -62,12 +62,10 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
                       project: widget.project,
                     ),
                   ),
-                );
-              },
-            ),
+                ),
           ],
-        ),
-      ),
+        ),);
+        },)
     );
   }
 }
