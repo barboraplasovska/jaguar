@@ -1,3 +1,4 @@
+
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,11 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IProject project;
   final ThemeSwitcher themeSwitcher;
   final FileSystemEntity? selectedFile;
-
   const EditorAppBar({
     super.key,
     required this.project,
     required this.themeSwitcher,
+
 required this.selectedFile,
   });
 
