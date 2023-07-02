@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/service/node_service/node_service.dart';
 import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
+import 'package:ping/components/buttons/new_project_button.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
 import 'package:ping/components/previous_projects_list/previous_projects_list.dart';
 import 'package:ping/themes/theme_switcher.dart';
@@ -78,6 +79,10 @@ class _StarterPageState extends State<StarterPage> {
                       top: 4,
                       child: Row(
                         children: [
+                          NewProjectButton(
+                              buttonStyle: OPButtonStyle.elevatedButton,
+                              pushReplacement: false,
+                              themeSwitcher: widget.themeSwitcher),
                           OpenProjectButton(
                             buttonStyle: OPButtonStyle.elevatedButton,
                             pushReplacement: false,
