@@ -51,8 +51,11 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                               .play(AssetSource('sounds/tiger_roar.wav')),
                           for (feature in aspect.getFeatures())
                             {
-                              path = selectedFile?.path,
-                              feature.execute(project,additionalArguments : [path].cast<String>()),
+                              if (feature.getType() == TigerFeature.exec)
+                                {
+                                  path = selectedFile?.path,
+                                  await feature.execute(project,additionalArguments : [path].cast<String>()),
+                                }
                             }
                         }
                     },

@@ -22,9 +22,12 @@ class TigrouCompiler {
       for (int i = 0; i < additionalArguments.length; i++) {
         args[3 + i] = additionalArguments[i].toString();
       }
-      ProcessResult result = await Process.run(".$compiler", args);
-      File outputFile = File('a.out');
+      ProcessResult result = await Process.run(compiler, args);
+      var rootNode = project.getRootNode().getPath();
+      File outputFile = File('$rootNode/a.ll');
       await outputFile.writeAsString(result.stdout);
+      args = ["-m32","$rootNode/a.ll","-o","$rootNode/exec"];
+      await Process.run("clang", args);
     } catch (e) {
       report = () => false;
     }
