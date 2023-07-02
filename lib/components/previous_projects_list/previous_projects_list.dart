@@ -1,4 +1,3 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
@@ -28,7 +27,6 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
   TextEditingController searchController = TextEditingController();
   List<bool> isHovered = [];
 
-  var result;
   var iproject;
 
   String getProjectName(String path) {
@@ -92,24 +90,17 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
               final project = getProjectName(path);
               return GestureDetector(
                 onTap: () async => {
-                  result = await FilePicker.platform
-                      .getDirectoryPath(initialDirectory: path),
-                  if (result != null)
-                    {
-                      iproject = projectService.load(result!),
-                      widget.themeSwitcher
-                          .switchTheme(setProjectTheme(iproject)),
-                      await addPreviousProject(
-                          iproject.getRootNode().getPath()),
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CodeEditorPage(
-                            project: iproject,
-                          ),
-                        ),
+                  iproject = projectService.load(path),
+                  widget.themeSwitcher.switchTheme(setProjectTheme(iproject)),
+                  await addPreviousProject(iproject.getRootNode().getPath()),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CodeEditorPage(
+                        project: iproject,
                       ),
-                    }
+                    ),
+                  ),
                 },
                 child: MouseRegion(
                   onEnter: (_) {

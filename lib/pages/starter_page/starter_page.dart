@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/service/node_service/node_service.dart';
 import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
+import 'package:ping/components/buttons/new_project_button.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
 import 'package:ping/components/previous_projects_list/previous_projects_list.dart';
 import 'package:ping/themes/theme_switcher.dart';
@@ -41,26 +42,28 @@ class _StarterPageState extends State<StarterPage> {
             Expanded(
               flex: 1,
               child: Container(
+                padding: EdgeInsets.all(20),
                 color: Theme.of(context).colorScheme.background,
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 50),
-                      child: Row(
-                        children: [
-                          Image(
-                            image: AssetImage("assets/images/fusion.png"),
-                            height: 200,
-                          ),
-                          Text(
-                            "PING",
-                            style: TextStyle(fontSize: 40),
-                          ),
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/fusion.png"),
+                          height: 100,
+                        ),
+                        Text(
+                          "PING",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
                     ),
-                    Text("Welcome to the best Java / Tiger IDE.")
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text("Welcome to the best Java / Tiger IDE."),
+                    )
                   ],
                 ),
               ),
@@ -80,6 +83,10 @@ class _StarterPageState extends State<StarterPage> {
                       top: 4,
                       child: Row(
                         children: [
+                          NewProjectButton(
+                              buttonStyle: OPButtonStyle.elevatedButton,
+                              pushReplacement: false,
+                              themeSwitcher: widget.themeSwitcher),
                           OpenProjectButton(
                             buttonStyle: OPButtonStyle.elevatedButton,
                             pushReplacement: false,

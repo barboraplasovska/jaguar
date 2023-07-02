@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/backend/domains/entity/feature/feature.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:ping/components/buttons/new_project_button.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
 import 'package:ping/components/buttons/run_button.dart';
 import 'package:ping/pages/settings/settings_page.dart';
@@ -67,6 +68,10 @@ required this.selectedFile,
                         }
                     },
                 }),
+        NewProjectButton(
+            buttonStyle: OPButtonStyle.textButton,
+            pushReplacement: true,
+            themeSwitcher: themeSwitcher),
         OpenProjectButton(
           buttonStyle: OPButtonStyle.textButton,
           pushReplacement: true,
