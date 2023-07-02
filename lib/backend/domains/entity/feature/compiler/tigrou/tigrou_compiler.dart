@@ -22,6 +22,7 @@ class TigrouCompiler {
       for (int i = 0; i < additionalArguments.length; i++) {
         args[3 + i] = additionalArguments[i].toString();
       }
+
       ProcessResult result = await Process.run(compiler, args);
       var rootNode = project.getRootNode().getPath();
       File outputFile = File('$rootNode/a.ll');

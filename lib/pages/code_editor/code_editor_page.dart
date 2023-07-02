@@ -35,7 +35,8 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
         builder: (context, fileProvider, _) {
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: EditorAppBar(project: widget.project!, selectedFile: fileProvider.selectedFile,),
+        appBar: EditorAppBar(
+            project: widget.project!, themeSwitcher: themeSwitcher, selectedFile: fileProvider.selectedFile,),
         body: Row(
           children: [
             Expanded(

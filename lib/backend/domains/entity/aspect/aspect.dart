@@ -29,7 +29,6 @@ class Aspect implements IAspect {
     TigrouExecute(),
   ];
 
-
   Aspect(this.type) {
     switch (type) {
       case AspectType.maven:
