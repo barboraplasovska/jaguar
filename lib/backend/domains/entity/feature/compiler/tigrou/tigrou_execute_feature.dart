@@ -30,7 +30,9 @@ class TigrouExecute extends Feature {
     var process = await Process.run("$rootpath/exec", []);
 
     await writeOutput(process.stdout, rootpath);
-    await file.delete();
+    if (await file.exists()) {
+      await file.delete();
+    }
     return report;
   }
 }
