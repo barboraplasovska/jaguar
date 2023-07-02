@@ -6,7 +6,6 @@ import 'package:ping/backend/domains/entity/project_interface.dart';
 
 class TigrouExecute extends Feature {
   TigrouExecute() : super(TigerFeature.exec);
-
   static Future<void> writeOutput(String output, String rootPath) async {
     var file = File("$rootPath/.output");
 
