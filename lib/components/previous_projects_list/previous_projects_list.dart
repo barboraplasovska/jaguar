@@ -92,24 +92,17 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
               final project = getProjectName(path);
               return GestureDetector(
                 onTap: () async => {
-                  result = await FilePicker.platform
-                      .getDirectoryPath(initialDirectory: path),
-                  if (result != null)
-                    {
-                      iproject = projectService.load(result!),
-                      widget.themeSwitcher
-                          .switchTheme(setProjectTheme(iproject)),
-                      await addPreviousProject(
-                          iproject.getRootNode().getPath()),
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CodeEditorPage(
-                            project: iproject,
-                          ),
-                        ),
+                  iproject = projectService.load(path),
+                  widget.themeSwitcher.switchTheme(setProjectTheme(iproject)),
+                  await addPreviousProject(iproject.getRootNode().getPath()),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CodeEditorPage(
+                        project: iproject,
                       ),
-                    }
+                    ),
+                  ),
                 },
                 child: MouseRegion(
                   onEnter: (_) {
