@@ -1,4 +1,3 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
@@ -28,7 +27,6 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
   TextEditingController searchController = TextEditingController();
   List<bool> isHovered = [];
 
-  var result;
   var iproject;
 
   String getProjectName(String path) {
