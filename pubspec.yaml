@@ -40,7 +40,7 @@ dependencies:
   audioplayers: ^4.1.0
   path: ^1.8.3
   flutter_code_editor: ^0.3.0
-  shared_preferences: ^2.1.2
+  shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_test:

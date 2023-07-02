@@ -35,6 +35,8 @@ class _StarterPageState extends State<StarterPage> {
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       body: Container(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
               flex: 1,

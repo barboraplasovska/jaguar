@@ -1,3 +1,5 @@
+
+import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
@@ -12,11 +14,13 @@ import '../buttons/settings_button.dart';
 class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IProject project;
   final ThemeSwitcher themeSwitcher;
-
+  final FileSystemEntity? selectedFile;
   const EditorAppBar({
     super.key,
     required this.project,
     required this.themeSwitcher,
+
+required this.selectedFile,
   });
 
   @override
@@ -28,6 +32,7 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     var aspect;
     var feature;
+    var path;
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       actions: [
@@ -51,6 +56,14 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                         {
                           audioPlayer
                               .play(AssetSource('sounds/tiger_roar.wav')),
+                          for (feature in aspect.getFeatures())
+                            {
+                              if (feature.getType() == TigerFeature.exec)
+                                {
+                                  path = selectedFile?.path,
+                                  await feature.execute(project,additionalArguments : [path].cast<String>()),
+                                }
+                            }
                         }
                     },
                 }),
