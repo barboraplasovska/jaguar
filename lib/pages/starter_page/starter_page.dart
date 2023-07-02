@@ -40,26 +40,28 @@ class _StarterPageState extends State<StarterPage> {
             Expanded(
               flex: 1,
               child: Container(
+                padding: EdgeInsets.all(20),
                 color: Theme.of(context).colorScheme.background,
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 50),
-                      child: Row(
-                        children: [
-                          Image(
-                            image: AssetImage("assets/images/fusion.png"),
-                            height: 200,
-                          ),
-                          Text(
-                            "PING",
-                            style: TextStyle(fontSize: 40),
-                          ),
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/fusion.png"),
+                          height: 100,
+                        ),
+                        Text(
+                          "PING",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
                     ),
-                    Text("Welcome to the best Java / Tiger IDE.")
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text("Welcome to the best Java / Tiger IDE."),
+                    )
                   ],
                 ),
               ),
