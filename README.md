@@ -1,4 +1,4 @@
-# pingfrontend
+# ping
 
 A new Flutter project.
 
