@@ -66,3 +66,12 @@ Future<void> addPreviousProject(String project) async {
     await prefs.setStringList('previousProjects', currentProjects);
   }
 }
+
+Future<void> removePreviousProject(String project) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  List<String> currentProjects = await getPreviousProjects();
+  currentProjects.remove(project);
+
+  await prefs.setStringList('previousProjects', currentProjects);
+}

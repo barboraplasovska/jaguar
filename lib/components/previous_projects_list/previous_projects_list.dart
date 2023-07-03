@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
 import 'package:ping/backend/domains/service/node_service/node_service.dart';
 import 'package:ping/backend/domains/service/project_service/project_service.dart';
 import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
+import 'package:ping/components/popups/invalid_path_popup.dart';
 import 'package:ping/themes/theme_switcher.dart';
 
 import '../../pages/code_editor/code_editor_page.dart';
@@ -89,10 +94,18 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
               final path = filteredProjects[index];
               final project = getProjectName(path);
               return GestureDetector(
-                onTap: () async => {
-                  iproject = projectService.load(path),
-                  widget.themeSwitcher.switchTheme(setProjectTheme(iproject)),
-                  await addPreviousProject(iproject.getRootNode().getPath()),
+                onTap: () async {
+                  bool directoryExists = await Directory(path).exists();
+                  if (!directoryExists) {
+                    removePreviousProject(path);
+                    showDialog(
+                        context: context,
+                        builder: (context) => InvalidPathPopup(path: path));
+                    return;
+                  }
+                  iproject = projectService.load(path);
+                  widget.themeSwitcher.switchTheme(setProjectTheme(iproject));
+                  await addPreviousProject(iproject.getRootNode().getPath());
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -100,7 +113,7 @@ class _PreviousProjectsListState extends State<PreviousProjectsList> {
                         project: iproject,
                       ),
                     ),
-                  ),
+                  );
                 },
                 child: MouseRegion(
                   onEnter: (_) {
