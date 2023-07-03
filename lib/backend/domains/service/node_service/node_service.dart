@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:path/path.dart';
 
-import 'package:pingfrontend/backend/domains/entity/node/node.dart';
-import 'package:pingfrontend/backend/domains/entity/node_interface.dart';
-import 'package:pingfrontend/backend/domains/service/node_service_interface.dart';
+import 'package:ping/backend/domains/entity/node/node.dart';
+import 'package:ping/backend/domains/entity/node_interface.dart';
+import 'package:ping/backend/domains/service/node_service_interface.dart';
 
 class NodeService implements INodeService {
   FileSystemEntity _createFile(String path, NodeType type) {

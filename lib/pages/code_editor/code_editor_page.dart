@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pingfrontend/backend/domains/entity/project_interface.dart';
-import 'package:pingfrontend/components/file_tree/file_tree.dart';
 import 'package:provider/provider.dart';
 
+import '../../backend/domains/entity/project_interface.dart';
 import '../../components/editor_app_bar/editor_app_bar.dart';
 import '../../components/file_detail/file_detail.dart';
 import '../../components/file_tree/file_provider.dart';
+import '../../components/file_tree/file_tree.dart';
 import '../../themes/theme_switcher.dart';
 
 class CodeEditorPage extends StatefulWidget {
@@ -31,9 +31,12 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
           value: themeSwitcher,
         ),
       ],
-      child: Scaffold(
+      child: Consumer<FileProvider>(
+        builder: (context, fileProvider, _) {
+      return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: EditorAppBar(project: widget.project!),
+        appBar: EditorAppBar(
+          project: widget.project!, themeSwitcher: themeSwitcher, selectedFile: fileProvider.selectedFile,),
         body: Row(
           children: [
             Expanded(
@@ -46,9 +49,7 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
                 ),
               ),
             ),
-            Consumer<FileProvider>(
-              builder: (context, fileProvider, _) {
-                return Expanded(
+            Expanded(
                   flex: 8,
                   child: Container(
                     decoration: BoxDecoration(
@@ -59,14 +60,13 @@ class _CodeEditorPageState extends State<CodeEditorPage> {
                     ),
                     child: FileDetail(
                       selectedFile: fileProvider.selectedFile,
+                      project: widget.project,
                     ),
                   ),
-                );
-              },
-            ),
+                ),
           ],
-        ),
-      ),
+        ),);
+        },)
     );
   }
 }
