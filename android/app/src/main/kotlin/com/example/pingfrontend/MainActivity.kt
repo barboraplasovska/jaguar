@@ -1,4 +1,4 @@
-package com.example.pingfrontend
+package com.example.ping
 
 import io.flutter.embedding.android.FlutterActivity
 

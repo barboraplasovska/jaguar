@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = pingfrontend
+PRODUCT_NAME = ping
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.pingfrontend
+PRODUCT_BUNDLE_IDENTIFIER = com.example.ping
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
