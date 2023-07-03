@@ -33,10 +33,49 @@ class _CreateProjectButtonState extends State<CreateProjectButton> {
   var result;
   late IProject iproject;
 
+  void addJavaSpecificCode(String path, String projectName) {
+    // create /com/example
+    final comDirectory = Directory('$path/com/example');
+    comDirectory.createSync(recursive: true);
+
+    // Create Main.java file
+    final mainFile = File('${comDirectory.path}/Main.java');
+    mainFile.writeAsStringSync('''
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+''');
+
+// Create pom.xml file
+    final pomFile = File('$path/pom.xml');
+    pomFile.writeAsStringSync('''
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>$projectName</artifactId>
+    <version>1.0.0</version>
+</project>
+''');
+  }
+
+  void addTigerSpecificCode(String path) {
+    // Create main.tig file for Tiger project
+    final mainFile = File('$path/main.tig');
+    mainFile.writeAsStringSync('print("Hello, World!");');
+  }
+
   void createProject(String name, String path, ProjectType type) {
-    // FIXME: add different stuff depending on project type
     final projectDirectory = Directory('$path/$name');
-    projectDirectory.create(recursive: true);
+    projectDirectory.createSync(recursive: true);
+    if (type == ProjectType.java) {
+      addJavaSpecificCode(projectDirectory.path, name);
+    } else if (type == ProjectType.tiger) {
+      addTigerSpecificCode(projectDirectory.path);
+    }
   }
 
   AppTheme setProjectTheme(IProject project) {
