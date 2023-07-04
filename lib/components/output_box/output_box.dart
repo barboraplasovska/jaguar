@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,6 +21,48 @@ class OutputBox extends StatefulWidget {
 
 class _OutputBoxState extends State<OutputBox> {
   String outputText = "";
+  late File _outputFile;
+  late StreamSubscription<FileSystemEvent> _fileSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    setupFileMonitoring();
+  }
+
+  void setupFileMonitoring() async {
+    String filePath = "${widget.project!.getRootNode().getPath()}/.ping/output";
+    _outputFile = File(filePath);
+
+    if (await _outputFile.exists()) {
+      updateOutputText();
+    }
+
+    _fileSubscription = _outputFile.parent.watch().listen((event) {
+      if (event.path == _outputFile.path) {
+        updateOutputText();
+      }
+    });
+  }
+
+  Future<void> updateOutputText() async {
+    try {
+      String newOutputText = await _outputFile.readAsString();
+      setState(() {
+        outputText = newOutputText;
+      });
+    } catch (e) {
+      setState(() {
+        outputText = '';
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _fileSubscription.cancel();
+    super.dispose();
+  }
 
   Future<String> readFile(String path) async {
     var file = File(path);
@@ -31,7 +74,7 @@ class _OutputBoxState extends State<OutputBox> {
   }
 
   FutureBuilder<String> buildOutputText(String rootPath) {
-    String path = "$rootPath/.output";
+    String path = "$rootPath/.ping/output";
     return FutureBuilder(
       future: readFile(path),
       builder: (context, snapshot) {

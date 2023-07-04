@@ -48,7 +48,6 @@ class EditorModel extends ChangeNotifier {
 
   void closeFile(FileEditor file) {
     allFiles.remove(file);
-    print(allFiles.map((e) => e.name));
 
     notify();
 
