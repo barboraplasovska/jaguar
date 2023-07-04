@@ -15,10 +15,13 @@ class ExecFeature extends Feature {
     try {
       String pomPath = project.getRootNode().getPath();
       String args = await getJavaCompilationOptions();
+      args = "${args != "" ? "$command$args" : command} -q";
+      List<String> arguments= args.split(' ');
+      await Process.run('mvn', ['clean','install'], workingDirectory: pomPath);
       ProcessResult result =
-          await Process.run('mvn', args.split(' '), workingDirectory: pomPath);
-
-      await writeOutput(result.stdout, project.getRootNode().getPath());
+          await Process.run('mvn', arguments, workingDirectory: pomPath);
+      String stringWithoutEscapeSequences = result.stdout.replaceAll(RegExp(r'\x1B\[[0-9;]*[mG]'), '');
+      await writeOutput(stringWithoutEscapeSequences, project.getRootNode().getPath());
     } catch (e) {
       report = () => false;
     }
@@ -31,4 +34,6 @@ class ExecFeature extends Feature {
     return await compile(project, "exec:java",
         additionalArguments: additionalArguments);
   }
+
+
 }

@@ -17,6 +17,7 @@ class CreateProjectButton extends StatefulWidget {
   final String path;
   final ProjectType type;
   final ThemeSwitcher themeSwitcher;
+
   const CreateProjectButton({
     super.key,
     required this.name,
@@ -36,7 +37,7 @@ class _CreateProjectButtonState extends State<CreateProjectButton> {
 
   void addJavaSpecificCode(String path, String projectName) {
     // create /com/example
-    final comDirectory = Directory('$path/com/example');
+    final comDirectory = Directory('$path/src/main/java/');
     comDirectory.createSync(recursive: true);
 
     // Create Main.java file
@@ -60,16 +61,16 @@ public class Main {
     <groupId>com.example</groupId>
     <artifactId>$projectName</artifactId>
     <version>1.0.0</version>
-</project>
+    
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-<build>
+    
+    <build>
         <plugins>
             <!-- ... Existing plugins ... -->
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
