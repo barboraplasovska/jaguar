@@ -8,6 +8,7 @@ import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/components/buttons/create_project_button.dart';
 
 import 'package:ping/components/output_box/output_box.dart';
+import 'package:ping/themes/theme_switcher.dart';
 
 import '../../backend/domains/entity/project_interface.dart';
 import '../code_editor/code_editor.dart';
@@ -18,11 +19,13 @@ import '../code_editor/file_editor.dart';
 class FileDetail extends StatefulWidget {
   final FileSystemEntity? selectedFile;
   final IProject? project;
+  final ThemeSwitcher themeSwitcher;
 
   const FileDetail({
     super.key,
     this.selectedFile,
     required this.project,
+    required this.themeSwitcher,
   });
 
   @override
@@ -100,6 +103,7 @@ class _FileDetailState extends State<FileDetail> {
                     ),
                   ),
                   projectType: projectType,
+                  themeSwitcher: widget.themeSwitcher,
                 );
               } else if (snapshot.hasError) {
                 // Error occurred

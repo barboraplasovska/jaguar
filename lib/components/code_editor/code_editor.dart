@@ -4,8 +4,15 @@ import 'package:flutter_code_editor/flutter_code_editor.dart';
 
 import 'package:ping/components/code_editor/editor_model_style.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
+
+import 'package:ping/themes/color_highlighting/fusion_highlighting.dart';
+import 'package:ping/themes/color_highlighting/java_highlighting.dart';
+import 'package:ping/themes/color_highlighting/tiger_highlighting.dart';
+
+
 import 'package:highlight/languages/java.dart';
 import 'package:highlight/languages/tiger.dart';
+import 'package:ping/themes/theme_switcher.dart';
 
 
 import '../buttons/create_project_button.dart';
@@ -16,11 +23,13 @@ import 'file_editor.dart';
 class CodeEditor extends StatefulWidget {
   late final EditorModel? model;
   final ProjectType projectType;
+  final ThemeSwitcher themeSwitcher;
 
   CodeEditor({
     Key? key,
     this.model,
     required this.projectType,
+    required this.themeSwitcher,
   }) : super(key: key);
 
   @override
@@ -31,6 +40,16 @@ class _CodeEditorState extends State<CodeEditor> {
   @override
   void initState() {
     super.initState();
+  }
+
+  CodeThemeData getCodeThemeData() {
+    if (widget.themeSwitcher.currentThemeOption == AppTheme.java) {
+      return CodeThemeData(styles: javaTheme);
+    }
+    else if (widget.themeSwitcher.currentThemeOption == AppTheme.tiger) {
+      return CodeThemeData(styles: tigerTheme);
+    }
+    return CodeThemeData(styles: fusionTheme);
   }
 
   @override
@@ -155,7 +174,7 @@ class _CodeEditorState extends State<CodeEditor> {
             color:
                 Theme.of(context).colorScheme.primaryContainer.withAlpha(220),
             child: CodeTheme(
-              data: CodeThemeData(styles: monokaiSublimeTheme),
+              data: getCodeThemeData(),
               child: SingleChildScrollView(
                 child: CodeField(
                   background: Colors.transparent,
