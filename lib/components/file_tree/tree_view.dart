@@ -41,7 +41,8 @@ class _TreeViewState extends State<TreeView> {
       String nodeName =
           folderName != null ? '$folderName.${node.getName()}' : node.getName();
 
-      if (sortedChildren.length == 1 && sortedChildren[0].getType() == NodeType.folder) {
+      if (sortedChildren.length == 1 &&
+          sortedChildren[0].getType() == NodeType.folder) {
         return _buildNode(sortedChildren[0],
             level: level, folderName: nodeName);
       }
