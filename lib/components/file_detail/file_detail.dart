@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:path/path.dart';
+
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
 import 'package:ping/components/buttons/create_project_button.dart';
+
 import 'package:ping/components/output_box/output_box.dart';
 
 import '../../backend/domains/entity/project_interface.dart';
@@ -56,6 +58,7 @@ class _FileDetailState extends State<FileDetail> {
       return 'Error reading file: ${e.toString()}';
     }
   }
+
 
   @override
   void initState() {
