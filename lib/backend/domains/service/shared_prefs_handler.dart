@@ -14,10 +14,11 @@ void setTigerPath(String path) async {
 }
 
 Future<String> getTigerCompilationOptions() async {
+
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? path = prefs.getString('tigerCompilationOptions');
-  return path ?? "";
+  return path ?? "-ac --llvm-runtime-display -llvm-display";
 }
 
 void setTigerCompilationOptions(String path) async {
@@ -29,7 +30,7 @@ Future<String> getJavaCompilationOptions() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? path = prefs.getString('javaCompilationOptions');
-  return path ?? "";
+  return path ?? "exec:java -f pom.xml";
 }
 
 void setJavaCompilationOptions(String path) async {

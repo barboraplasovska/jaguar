@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:ping/backend/domains/entity/feature/feature.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
 
 class TigrouCompiler {
   static late String compiler;
@@ -14,15 +15,12 @@ class TigrouCompiler {
       {List<String> additionalArguments = const []}) async {
     ExecutionReport report = () => true;
     try {
-      List<String> args =
-          List<String>.filled(3 + additionalArguments.length, '');
-      args[0] = "-ac";
-      args[1] = "--llvm-runtime-display";
-      args[2] = "--llvm-display";
-      for (int i = 0; i < additionalArguments.length; i++) {
-        args[3 + i] = additionalArguments[i].toString();
-      }
-      ProcessResult result = await Process.run(compiler, args);
+
+      List<String> args = (await getTigerCompilationOptions()).split(' ');
+      args.addAll(additionalArguments);
+      String tigerPath = await getTigerPath();
+      ProcessResult result = await Process.run(tigerPath, args);
+
       var rootNode = project.getRootNode().getPath();
       File outputFile = File('$rootNode/a.ll');
       await outputFile.writeAsString(result.stdout);
