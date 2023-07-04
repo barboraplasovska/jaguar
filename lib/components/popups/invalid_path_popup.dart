@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ping/backend/utils/path/path_utils.dart';
 
 class InvalidPathPopup extends StatefulWidget {
   final String path;
@@ -35,7 +36,7 @@ class _InvalidPathPopupState extends State<InvalidPathPopup> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                "The path '${widget.path}' does not exist.",
+                "The path '${getAbsolutePath(widget.path)}' does not exist.",
                 style: const TextStyle(
                   fontSize: 12,
                 ),

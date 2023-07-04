@@ -51,6 +51,7 @@ public class Main {
 // Create pom.xml file
     final pomFile = File('$path/pom.xml');
     pomFile.writeAsStringSync('''
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -58,6 +59,26 @@ public class Main {
     <groupId>com.example</groupId>
     <artifactId>$projectName</artifactId>
     <version>1.0.0</version>
+</project>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+<build>
+        <plugins>
+            <!-- ... Existing plugins ... -->
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 ''');
   }
