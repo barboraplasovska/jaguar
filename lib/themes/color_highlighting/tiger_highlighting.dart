@@ -4,7 +4,7 @@ const tigerTheme = {
   'name': TextStyle(color: Color(0xFFFFA500), fontWeight: FontWeight.bold),
   'tag': TextStyle(color: Color(0xFF808080)),
   'meta': TextStyle(color: Color(0xFF808080)),
-  'root': TextStyle(color: Color(0xFF000000)),
+  'root': TextStyle(color: Color(0xFFFFFFFF)),
   'subst': TextStyle(color: Color(0xFF000000)),
   'comment': TextStyle(color: Color(0xFF888888)),
   'keyword': TextStyle(fontWeight: FontWeight.bold),
