@@ -127,7 +127,7 @@ class _AddFilePopupState extends State<AddFilePopup> {
       buttonPadding: EdgeInsets.zero,
       content: SizedBox(
         width: 500,
-        height: 250,
+        height: 220,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -146,27 +146,36 @@ class _AddFilePopupState extends State<AddFilePopup> {
             buildEditableTextField("Location:", locationController),
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                      ),
+                      child: const Text("Cancel"),
                     ),
-                    child: const Text("Cancel"),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      createFile(name, location);
-                      Navigator.of(context).pop();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        createFile(name, location);
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                      ),
+                      child: const Text("OK"),
                     ),
-                    child: const Text("OK"),
                   ),
                 ],
               ),
