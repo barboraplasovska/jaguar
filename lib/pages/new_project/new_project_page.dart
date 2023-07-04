@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:ping/backend/utils/path/path_utils.dart';
 import 'package:ping/components/buttons/create_project_button.dart';
 import 'package:ping/themes/theme_switcher.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +81,7 @@ class _NewProjectPageState extends State<NewProjectPage> {
                         {
                           setState(() {
                             path = result;
-                            controller.text = result;
+                            controller.text = getAbsolutePath(result);
                           })
                         }
                     }
