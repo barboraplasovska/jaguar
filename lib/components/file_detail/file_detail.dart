@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:path/path.dart';
+import 'package:ping/backend/domains/entity/aspect_interface.dart';
+import 'package:ping/components/buttons/create_project_button.dart';
 import 'package:ping/components/output_box/output_box.dart';
 
 import '../../backend/domains/entity/project_interface.dart';
@@ -28,6 +30,19 @@ class FileDetail extends StatefulWidget {
 class _FileDetailState extends State<FileDetail> {
   List<FileEditor> tabs = [];
   String lastFileContent = "";
+  ProjectType projectType = ProjectType.nan;
+
+  void setProjectType() {
+    var aspect;
+    for (aspect in widget.project!.getAspects()) {
+      if (aspect.type == AspectType.maven) {
+        projectType = ProjectType.java;
+      }
+      if (aspect.type == AspectType.tigrou) {
+        projectType = ProjectType.tiger;
+      }
+    }
+  }
 
   Future<String> readFile(FileSystemEntity fileEntity) async {
     try {
@@ -40,6 +55,12 @@ class _FileDetailState extends State<FileDetail> {
     } catch (e) {
       return 'Error reading file: ${e.toString()}';
     }
+  }
+
+  @override
+  void initState() {
+    setProjectType();
+    super.initState();
   }
 
   Widget buildFileDetail() {
@@ -75,6 +96,7 @@ class _FileDetailState extends State<FileDetail> {
                       editorBorderColor: Theme.of(context).colorScheme.primary,
                     ),
                   ),
+                  projectType: projectType,
                 );
               } else if (snapshot.hasError) {
                 // Error occurred
