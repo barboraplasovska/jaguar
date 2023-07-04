@@ -5,6 +5,8 @@ import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:ping/components/code_editor/editor_model_style.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
 import 'package:highlight/languages/java.dart';
+import '../../themes/color_highlighting/java_highlighting.dart';
+import '../../themes/color_highlighting/fusion_highlighting.dart';
 
 import '../popups/unsaved_file_popup.dart';
 import 'editor_model.dart';
@@ -150,7 +152,7 @@ class _CodeEditorState extends State<CodeEditor> {
             color:
                 Theme.of(context).colorScheme.primaryContainer.withAlpha(220),
             child: CodeTheme(
-              data: CodeThemeData(styles: monokaiSublimeTheme),
+              data: CodeThemeData(styles: javaTheme),
               child: SingleChildScrollView(
                 child: CodeField(
                   background: Colors.transparent,
