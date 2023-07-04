@@ -9,6 +9,7 @@ import 'package:ping/backend/domains/entity/project_interface.dart';
 import 'package:ping/backend/domains/service/node_service/node_service.dart';
 import 'package:ping/backend/domains/service/project_service/project_service.dart';
 import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
+import 'package:ping/backend/utils/files/file_utils.dart';
 import 'package:ping/components/popups/invalid_path_popup.dart';
 import 'package:ping/themes/theme_switcher.dart';
 
@@ -91,6 +92,7 @@ class _OpenProjectButtonState extends State<OpenProjectButton> {
         project = projectService.load(result!);
         widget.themeSwitcher.switchTheme(setProjectTheme(project));
         await addPreviousProject(project.getRootNode().getPath());
+        await writeOutput("", project.getRootNode().getPath());
 
         if (widget.pushReplacement) {
           Navigator.pushReplacement(

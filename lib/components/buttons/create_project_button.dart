@@ -6,6 +6,7 @@ import 'package:ping/backend/domains/entity/project_interface.dart';
 import 'package:ping/backend/domains/service/node_service/node_service.dart';
 import 'package:ping/backend/domains/service/project_service/project_service.dart';
 import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
+import 'package:ping/backend/utils/files/file_utils.dart';
 import 'package:ping/pages/code_editor/code_editor_page.dart';
 import 'package:ping/themes/theme_switcher.dart';
 
@@ -123,6 +124,7 @@ public class Main {
         iproject = projectService.load(result),
         widget.themeSwitcher.switchTheme(setProjectTheme(iproject)),
         await addPreviousProject(iproject.getRootNode().getPath()),
+        await writeOutput("", iproject.getRootNode().getPath()),
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
