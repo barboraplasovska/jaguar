@@ -5,17 +5,22 @@ import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:ping/components/code_editor/editor_model_style.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
 import 'package:highlight/languages/java.dart';
+import 'package:highlight/languages/tiger.dart';
 
+
+import '../buttons/create_project_button.dart';
 import '../popups/unsaved_file_popup.dart';
 import 'editor_model.dart';
 import 'file_editor.dart';
 
 class CodeEditor extends StatefulWidget {
   late final EditorModel? model;
+  final ProjectType projectType;
 
   CodeEditor({
     Key? key,
     this.model,
+    required this.projectType,
   }) : super(key: key);
 
   @override
@@ -42,7 +47,7 @@ class _CodeEditorState extends State<CodeEditor> {
 
     final controller = CodeController(
       text: model.allFiles[position ?? 0].code,
-      language: java, // FIXME: tiger ?
+      language: widget.projectType == ProjectType.tiger ? tiger : java
     );
 
     Text showFilename(String name) {
