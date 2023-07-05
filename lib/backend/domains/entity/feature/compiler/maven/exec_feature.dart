@@ -31,9 +31,8 @@ class ExecFeature extends Feature {
   @override
   Future<ExecutionReport> execute(IProject project,
       {List<String> additionalArguments = const []}) async {
-    return await compile(project, "exec:java",
+    return await compile(project, "compile exec:java",
         additionalArguments: additionalArguments);
   }
-
 
 }
