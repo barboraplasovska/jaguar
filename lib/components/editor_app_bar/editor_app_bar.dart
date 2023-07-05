@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:ping/backend/domains/entity/project_interface.dart';
 import 'package:ping/components/buttons/new_project_button.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
 import 'package:ping/components/buttons/run_button.dart';
-import 'package:ping/pages/settings/settings_page.dart';
 import 'package:ping/themes/theme_switcher.dart';
 import '../buttons/settings_button.dart';
 
@@ -20,8 +18,7 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.project,
     required this.themeSwitcher,
-
-required this.selectedFile,
+    required this.selectedFile,
   });
 
   @override
@@ -62,7 +59,9 @@ required this.selectedFile,
                               if (feature.getType() == TigerFeature.exec)
                                 {
                                   path = selectedFile?.path,
-                                  await feature.execute(project,additionalArguments : [path].cast<String>()),
+                                  await feature.execute(project,
+                                      additionalArguments:
+                                          [path].cast<String>()),
                                 }
                             }
                         }
@@ -79,16 +78,7 @@ required this.selectedFile,
         ),
         Padding(
           padding: const EdgeInsets.all(10),
-          child: SettingsButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsPage(),
-                ),
-              );
-            },
-          ),
+          child: SettingsButton(),
         ),
       ],
     );

@@ -11,6 +11,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  bool isRemoteSelected = false;
+
   bool isEditingTigerPath = false;
   TextEditingController tigerPathController = TextEditingController();
 
@@ -41,11 +43,19 @@ class _SettingsPageState extends State<SettingsPage> {
     });
   }
 
+  Future<void> loadIsRemoteSelected() async {
+    bool res = await getIsRemoteSelected();
+    setState(() {
+      isRemoteSelected = res;
+    });
+  }
+
   @override
   void initState() {
     loadTigerPath();
     loadTigerOptions();
     loadJavaOptions();
+    loadIsRemoteSelected();
     super.initState();
   }
 
@@ -92,6 +102,93 @@ class _SettingsPageState extends State<SettingsPage> {
                       : Theme.of(context).colorScheme.onTertiary),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildTigerSelector() {
+    final textStyle = TextStyle(
+      color: Theme.of(context).colorScheme.onPrimaryContainer,
+    );
+
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 140,
+            child: Text(
+              "Tiger compiler:",
+              style: TextStyle(
+                fontSize: 18,
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xFF787879),
+                width: 0.5,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+            ),
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      isRemoteSelected = true;
+                      setIsRemoteSelected(isRemoteSelected);
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isRemoteSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.primaryContainer,
+                    shadowColor: Colors.transparent,
+                    side: const BorderSide(
+                      color: Color(0xFF787879),
+                      width: 0.5,
+                      style: BorderStyle.none,
+                    ),
+                  ),
+                  child: Text(
+                    "Remote",
+                    style: textStyle,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      isRemoteSelected = false;
+                      setIsRemoteSelected(isRemoteSelected);
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: !isRemoteSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.primaryContainer,
+                    shadowColor: Colors.transparent,
+                    side: const BorderSide(
+                      color: Color(0xFF787879),
+                      width: 0.5,
+                      style: BorderStyle.none,
+                    ),
+                  ),
+                  child: Text(
+                    "Local",
+                    style: textStyle,
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -199,6 +296,7 @@ class _SettingsPageState extends State<SettingsPage> {
             tigerPathController,
             toggleEditTigerPath,
           ),
+          buildTigerSelector(),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Text(

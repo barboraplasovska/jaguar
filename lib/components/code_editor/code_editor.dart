@@ -3,17 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 
 import 'package:ping/components/code_editor/editor_model_style.dart';
-import 'package:flutter_highlight/themes/monokai-sublime.dart';
 
 import 'package:ping/themes/color_highlighting/fusion_highlighting.dart';
 import 'package:ping/themes/color_highlighting/java_highlighting.dart';
 import 'package:ping/themes/color_highlighting/tiger_highlighting.dart';
 
-
 import 'package:highlight/languages/java.dart';
 import 'package:highlight/languages/tiger.dart';
 import 'package:ping/themes/theme_switcher.dart';
-
 
 import '../buttons/create_project_button.dart';
 import '../popups/unsaved_file_popup.dart';
@@ -45,8 +42,7 @@ class _CodeEditorState extends State<CodeEditor> {
   CodeThemeData getCodeThemeData() {
     if (widget.themeSwitcher.currentThemeOption == AppTheme.java) {
       return CodeThemeData(styles: javaTheme);
-    }
-    else if (widget.themeSwitcher.currentThemeOption == AppTheme.tiger) {
+    } else if (widget.themeSwitcher.currentThemeOption == AppTheme.tiger) {
       return CodeThemeData(styles: tigerTheme);
     }
     return CodeThemeData(styles: fusionTheme);
@@ -65,9 +61,8 @@ class _CodeEditorState extends State<CodeEditor> {
     int? position = model.position;
 
     final controller = CodeController(
-      text: model.allFiles[position ?? 0].code,
-      language: widget.projectType == ProjectType.tiger ? tiger : java
-    );
+        text: model.allFiles[position ?? 0].code,
+        language: widget.projectType == ProjectType.tiger ? tiger : java);
 
     Text showFilename(String name) {
       return Text(
