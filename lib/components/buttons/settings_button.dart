@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ping/pages/settings/settings_page.dart';
 
 class SettingsButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
   const SettingsButton({
     super.key,
-    required this.onPressed,
   });
 
   @override
@@ -13,7 +11,14 @@ class SettingsButton extends StatelessWidget {
     return IconButton(
       splashRadius: 20,
       padding: EdgeInsets.zero,
-      onPressed: onPressed,
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const SettingsPage(),
+          ),
+        );
+      },
       icon: Icon(
         Icons.settings_sharp,
         size: 30,

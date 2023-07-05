@@ -3,6 +3,7 @@ import 'package:ping/backend/domains/service/node_service/node_service.dart';
 import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
 import 'package:ping/components/buttons/new_project_button.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
+import 'package:ping/components/buttons/settings_button.dart';
 import 'package:ping/components/previous_projects_list/previous_projects_list.dart';
 import 'package:ping/themes/theme_switcher.dart';
 import '../../backend/domains/service/project_service/project_service.dart';
@@ -42,28 +43,42 @@ class _StarterPageState extends State<StarterPage> {
             Expanded(
               flex: 1,
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.only(top: 20),
                 color: Theme.of(context).colorScheme.background,
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: const Stack(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image(
-                          image: AssetImage("assets/images/fusion.png"),
-                          height: 100,
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                image: AssetImage("assets/images/fusion.png"),
+                                height: 100,
+                              ),
+                              Text(
+                                "PING",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          "PING",
-                          style: TextStyle(fontSize: 20),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text("Welcome to the best Java / Tiger IDE."),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text("Welcome to the best Java / Tiger IDE."),
-                    )
+                    Positioned(
+                      bottom: 1,
+                      left: 1,
+                      child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: SettingsButton()),
+                    ),
                   ],
                 ),
               ),
@@ -72,7 +87,7 @@ class _StarterPageState extends State<StarterPage> {
               flex: 2,
               child: Container(
                 color: Theme.of(context).colorScheme.primaryContainer,
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 child: Stack(
                   children: [
                     PreviousProjectsList(

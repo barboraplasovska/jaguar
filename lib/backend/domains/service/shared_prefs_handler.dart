@@ -14,7 +14,6 @@ void setTigerPath(String path) async {
 }
 
 Future<String> getTigerCompilationOptions() async {
-
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? path = prefs.getString('tigerCompilationOptions');
@@ -75,4 +74,16 @@ Future<void> removePreviousProject(String project) async {
   currentProjects.remove(project);
 
   await prefs.setStringList('previousProjects', currentProjects);
+}
+
+Future<bool> getIsRemoteSelected() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  bool? res = prefs.getBool('isRemoteSelected');
+  return res ?? false;
+}
+
+Future<void> setIsRemoteSelected(bool newValue) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setBool("isRemoteSelected", newValue);
 }
