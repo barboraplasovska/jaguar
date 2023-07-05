@@ -39,6 +39,7 @@ dependencies:
   file_picker: ^4.1.0
   audioplayers: ^4.1.0
   path: ^1.8.3
+  http: ^0.13.5
   flutter_code_editor:
     git:
       url: https://github.com/Charles-Neyrand/flutter-code-editor.git
