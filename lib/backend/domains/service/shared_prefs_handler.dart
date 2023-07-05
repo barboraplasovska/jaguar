@@ -29,7 +29,7 @@ Future<String> getJavaCompilationOptions() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   String? path = prefs.getString('javaCompilationOptions');
-  return path ?? "exec:java -f pom.xml";
+  return path ?? " -f pom.xml";
 }
 
 void setJavaCompilationOptions(String path) async {
