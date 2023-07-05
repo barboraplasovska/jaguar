@@ -14,10 +14,11 @@ class TigrouExecute extends Feature {
     await writeOutput("", project.getRootNode().getPath());
     var rootpath = project.getRootNode().getPath();
     var file = File("$rootpath/a.ll");
-    if (!await file.exists()) {
-      await TigrouCompiler.compile(project,
-          additionalArguments: additionalArguments);
+    if (await file.exists()) {
+      await file.delete();
     }
+    await TigrouCompiler.compile(project,
+        additionalArguments: additionalArguments);
     ExecutionReport report = () => true;
     var process = await Process.run("$rootpath/exec", []);
 
