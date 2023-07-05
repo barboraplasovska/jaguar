@@ -15,6 +15,7 @@ enum MavenFeature implements FeatureType {
 enum TigerFeature implements FeatureType {
   compile,
   exec,
+  remote,
 }
 
 abstract class FeatureType {}

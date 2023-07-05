@@ -8,6 +8,7 @@ import 'package:ping/backend/domains/entity/feature/compiler/maven/test_feature.
 import 'package:ping/backend/domains/entity/feature/compiler/maven/tree_feature.dart';
 import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_compile_feature.dart';
 import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_execute_feature.dart';
+import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
 import 'package:ping/backend/domains/entity/feature/feature.dart';
 
 class Aspect implements IAspect {
@@ -27,6 +28,7 @@ class Aspect implements IAspect {
   static final List<Feature> tigrouFeatures = [
     TigrouCompile(),
     TigrouExecute(),
+    TigrouRemote(),
   ];
 
   Aspect(this.type) {
