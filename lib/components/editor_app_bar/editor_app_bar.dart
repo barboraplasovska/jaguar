@@ -2,15 +2,17 @@ import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:ping/backend/domains/entity/aspect_interface.dart';
+import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
 import 'package:ping/backend/domains/entity/feature/feature.dart';
 import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
 import 'package:ping/components/buttons/new_project_button.dart';
 import 'package:ping/components/buttons/open_project_button.dart';
 import 'package:ping/components/buttons/run_button.dart';
 import 'package:ping/themes/theme_switcher.dart';
 import '../buttons/settings_button.dart';
 
-class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
+class EditorAppBar extends StatefulWidget implements PreferredSizeWidget {
   final IProject project;
   final ThemeSwitcher themeSwitcher;
   final FileSystemEntity? selectedFile;
@@ -22,7 +24,25 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
+  State<EditorAppBar> createState() => _EditorAppBarState();
+
+  @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _EditorAppBarState extends State<EditorAppBar> {
+  bool remote = true;
+  TigrouRemote tigrouRemote = TigrouRemote();
+
+  Future<void> loadIsRemoteSelected() async {
+    remote = await getIsRemoteSelected();
+  }
+
+  @override
+  void initState() {
+    loadIsRemoteSelected();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +56,7 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         RunButton(
             onPressed: () async => {
-                  for (aspect in project.getAspects())
+                  for (aspect in widget.project.getAspects())
                     {
                       if (aspect.type == AspectType.maven)
                         {
@@ -46,7 +66,7 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                             {
                               if (feature.getType() == MavenFeature.exec)
                                 {
-                                  feature.execute(project),
+                                  feature.execute(widget.project),
                                 }
                             }
                         }
@@ -58,10 +78,19 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
                             {
                               if (feature.getType() == TigerFeature.exec)
                                 {
-                                  path = selectedFile?.path,
-                                  await feature.execute(project,
-                                      additionalArguments:
-                                          [path].cast<String>()),
+                                  path = widget.selectedFile?.path,
+                                  if (remote)
+                                    {
+                                      await tigrouRemote.execute(widget.project,
+                                          additionalArguments:
+                                              [path].cast<String>()),
+                                    }
+                                  else
+                                    {
+                                      await feature.execute(widget.project,
+                                          additionalArguments:
+                                              [path].cast<String>()),
+                                    }
                                 }
                             }
                         }
@@ -70,11 +99,11 @@ class EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
         NewProjectButton(
             buttonStyle: OPButtonStyle.textButton,
             pushReplacement: true,
-            themeSwitcher: themeSwitcher),
+            themeSwitcher: widget.themeSwitcher),
         OpenProjectButton(
           buttonStyle: OPButtonStyle.textButton,
           pushReplacement: true,
-          themeSwitcher: themeSwitcher,
+          themeSwitcher: widget.themeSwitcher,
         ),
         Padding(
           padding: const EdgeInsets.all(10),

@@ -88,7 +88,7 @@ public class Main {
   void addTigerSpecificCode(String path) {
     // Create main.tig file for Tiger project
     final mainFile = File('$path/main.tig');
-    mainFile.writeAsStringSync('print("Hello, World!");');
+    mainFile.writeAsStringSync('print("Hello, World!")');
   }
 
   void createProject(String name, String path, ProjectType type) {
