@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:ping/backend/utils/path/path_utils.dart';
+import 'package:jaguar/backend/utils/path/path_utils.dart';
 
 enum FileType { file, folder }
 

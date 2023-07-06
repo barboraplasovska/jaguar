@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ping/backend/domains/service/node_service/node_service.dart';
-import 'package:ping/backend/domains/service/project_service/project_service.dart';
-import 'package:ping/components/buttons/new_project_button.dart';
-import 'package:ping/components/buttons/open_project_button.dart';
-import 'package:ping/components/buttons/settings_button.dart';
-import 'package:ping/components/previous_projects_list/previous_projects_list.dart';
-import 'package:ping/themes/theme_switcher.dart';
+import 'package:jaguar/backend/domains/service/node_service/node_service.dart';
+import 'package:jaguar/backend/domains/service/project_service/project_service.dart';
+import 'package:jaguar/components/buttons/new_project_button.dart';
+import 'package:jaguar/components/buttons/open_project_button.dart';
+import 'package:jaguar/components/buttons/settings_button.dart';
+import 'package:jaguar/components/previous_projects_list/previous_projects_list.dart';
+import 'package:jaguar/themes/theme_switcher.dart';
 
 class StarterPage extends StatefulWidget {
   final ThemeSwitcher themeSwitcher;
@@ -54,7 +54,7 @@ class _StarterPageState extends State<StarterPage> {
                               height: 100,
                             ),
                             Text(
-                              "PING",
+                              "JAGUAR",
                               style: TextStyle(fontSize: 20),
                             ),
                           ],

@@ -167,7 +167,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="bNw-od-mp5"/>
-                                        <menuItem title="Check Spelling While Typing" id="rbD-Rh-wIN">
+                                        <menuItem title="Check Spelling While Tyjaguar" id="rbD-Rh-wIN">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleContinuousSpellChecking:" target="-1" id="7w6-Qz-0kB"/>

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ping/backend/domains/entity/node_interface.dart';
+import 'package:jaguar/backend/domains/entity/node_interface.dart';
 
 import 'package:path/path.dart';
 

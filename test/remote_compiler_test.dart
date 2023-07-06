@@ -1,15 +1,12 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_compile_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/tigrou/tigrou_compile_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
 
 void main() {
   group('Remote Tiger Compiler', () {
-
     test('Hello World', () async {
       String input = await File('test/tiger_input/hello.tig').readAsString();
 

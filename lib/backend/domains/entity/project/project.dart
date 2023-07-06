@@ -1,6 +1,6 @@
-import 'package:ping/backend/domains/entity/aspect_interface.dart';
-import 'package:ping/backend/domains/entity/node_interface.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/entity/aspect_interface.dart';
+import 'package:jaguar/backend/domains/entity/node_interface.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
 
 class Project implements IProject {
   late final INode _rootNode;

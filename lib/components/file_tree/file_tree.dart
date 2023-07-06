@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/domains/service/node_service/node_service.dart';
-import 'package:ping/backend/domains/service/project_service/project_service.dart';
-import 'package:ping/components/popups/add_file_popup.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/service/node_service/node_service.dart';
+import 'package:jaguar/backend/domains/service/project_service/project_service.dart';
+import 'package:jaguar/components/popups/add_file_popup.dart';
 import 'package:provider/provider.dart';
 
 import '../../backend/domains/entity/node_interface.dart';

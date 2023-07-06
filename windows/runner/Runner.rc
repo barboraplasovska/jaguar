@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "ping" "\0"
+            VALUE "FileDescription", "jaguar" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ping" "\0"
+            VALUE "InternalName", "jaguar" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ping.exe" "\0"
-            VALUE "ProductName", "ping" "\0"
+            VALUE "OriginalFilename", "jaguar.exe" "\0"
+            VALUE "ProductName", "jaguar" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

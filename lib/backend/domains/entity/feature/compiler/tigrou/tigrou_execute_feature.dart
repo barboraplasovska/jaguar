@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_compiler.dart';
-import 'package:ping/backend/domains/entity/feature/feature.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/utils/files/file_utils.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/tigrou/tigrou_compiler.dart';
+import 'package:jaguar/backend/domains/entity/feature/feature.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/utils/files/file_utils.dart';
 
 class TigrouExecute extends Feature {
   TigrouExecute() : super(TigerFeature.exec);

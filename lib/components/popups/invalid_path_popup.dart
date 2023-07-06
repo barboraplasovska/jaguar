@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ping/backend/utils/path/path_utils.dart';
+import 'package:jaguar/backend/utils/path/path_utils.dart';
 
 class InvalidPathPopup extends StatefulWidget {
   final String path;
