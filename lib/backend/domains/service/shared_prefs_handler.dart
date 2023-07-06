@@ -80,7 +80,7 @@ Future<bool> getIsRemoteSelected() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   bool? res = prefs.getBool('isRemoteSelected');
-  return res ?? false;
+  return res ?? true;
 }
 
 Future<void> setIsRemoteSelected(bool newValue) async {
