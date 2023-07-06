@@ -1,15 +1,15 @@
-import 'package:ping/backend/domains/entity/aspect_interface.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/maven/clean_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/maven/compile_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/maven/exec_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/maven/install_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/maven/package_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/maven/test_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/maven/tree_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_compile_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_execute_feature.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
-import 'package:ping/backend/domains/entity/feature/feature.dart';
+import 'package:jaguar/backend/domains/entity/aspect_interface.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/maven/clean_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/maven/compile_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/maven/exec_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/maven/install_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/maven/package_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/maven/test_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/maven/tree_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/tigrou/tigrou_compile_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/tigrou/tigrou_execute_feature.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
+import 'package:jaguar/backend/domains/entity/feature/feature.dart';
 
 class Aspect implements IAspect {
   late AspectType type;

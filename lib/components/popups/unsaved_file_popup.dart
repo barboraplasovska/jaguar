@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
-import 'package:ping/components/code_editor/editor_model.dart';
+import 'package:jaguar/components/code_editor/editor_model.dart';
 
 class UnsavedFilePopup extends StatelessWidget {
   final EditorModel model;

@@ -1,12 +1,12 @@
 import 'dart:io';
 
 Future<void> writeOutput(String output, String rootPath) async {
-  Directory directory = Directory("$rootPath/.ping");
+  Directory directory = Directory("$rootPath/.jaguar");
 
   if (!directory.existsSync()) {
     directory.createSync(recursive: true);
   }
-  var file = File("$rootPath/.ping/output");
+  var file = File("$rootPath/.jaguar/output");
 
   // Create the file if it doesn't exist
   if (!await file.exists()) {

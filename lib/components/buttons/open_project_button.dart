@@ -4,14 +4,14 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:ping/backend/domains/entity/aspect_interface.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/domains/service/node_service/node_service.dart';
-import 'package:ping/backend/domains/service/project_service/project_service.dart';
-import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
-import 'package:ping/backend/utils/files/file_utils.dart';
-import 'package:ping/components/popups/invalid_path_popup.dart';
-import 'package:ping/themes/theme_switcher.dart';
+import 'package:jaguar/backend/domains/entity/aspect_interface.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/service/node_service/node_service.dart';
+import 'package:jaguar/backend/domains/service/project_service/project_service.dart';
+import 'package:jaguar/backend/domains/service/shared_prefs_handler.dart';
+import 'package:jaguar/backend/utils/files/file_utils.dart';
+import 'package:jaguar/components/popups/invalid_path_popup.dart';
+import 'package:jaguar/themes/theme_switcher.dart';
 
 import '../../pages/code_editor/code_editor_page.dart';
 

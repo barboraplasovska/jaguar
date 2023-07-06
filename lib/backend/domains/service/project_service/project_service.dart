@@ -1,13 +1,13 @@
 import 'dart:core';
 import 'dart:io';
 
-import 'package:ping/backend/domains/entity/aspect/aspect.dart';
-import 'package:ping/backend/domains/entity/aspect_interface.dart';
-import 'package:ping/backend/domains/entity/node_interface.dart';
-import 'package:ping/backend/domains/entity/project/project.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/domains/service/node_service_interface.dart';
-import 'package:ping/backend/domains/service/project_service_interface.dart';
+import 'package:jaguar/backend/domains/entity/aspect/aspect.dart';
+import 'package:jaguar/backend/domains/entity/aspect_interface.dart';
+import 'package:jaguar/backend/domains/entity/node_interface.dart';
+import 'package:jaguar/backend/domains/entity/project/project.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/service/node_service_interface.dart';
+import 'package:jaguar/backend/domains/service/project_service_interface.dart';
 
 class ProjectService implements IProjectService {
   late final INodeService _nodeService;

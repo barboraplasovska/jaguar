@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ping/backend/domains/entity/aspect_interface.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/domains/service/node_service/node_service.dart';
-import 'package:ping/backend/domains/service/project_service/project_service.dart';
-import 'package:ping/components/buttons/open_project_button.dart';
-import 'package:ping/pages/new_project/new_project_page.dart';
-import 'package:ping/themes/theme_switcher.dart';
+import 'package:jaguar/backend/domains/entity/aspect_interface.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/service/node_service/node_service.dart';
+import 'package:jaguar/backend/domains/service/project_service/project_service.dart';
+import 'package:jaguar/components/buttons/open_project_button.dart';
+import 'package:jaguar/pages/new_project/new_project_page.dart';
+import 'package:jaguar/themes/theme_switcher.dart';
 
 class NewProjectButton extends StatefulWidget {
   final OPButtonStyle buttonStyle;

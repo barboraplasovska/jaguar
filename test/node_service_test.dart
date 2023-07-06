@@ -1,16 +1,12 @@
-
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ping/backend/domains/entity/node_interface.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/domains/service/node_service/node_service.dart';
-import 'package:ping/backend/domains/service/node_service_interface.dart';
-import 'package:ping/backend/domains/service/project_service/project_service.dart';
-import 'package:ping/backend/domains/service/project_service_interface.dart';
-
+import 'package:jaguar/backend/domains/entity/node_interface.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/service/node_service/node_service.dart';
+import 'package:jaguar/backend/domains/service/node_service_interface.dart';
+import 'package:jaguar/backend/domains/service/project_service/project_service.dart';
+import 'package:jaguar/backend/domains/service/project_service_interface.dart';
 
 void main() {
-
   test('Test description', () {
     // Test code
     INodeService nodeService = NodeService();
@@ -20,5 +16,4 @@ void main() {
       print(node.getPath());
     }
   });
-
 }

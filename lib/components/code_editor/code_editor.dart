@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 
-import 'package:ping/components/code_editor/editor_model_style.dart';
+import 'package:jaguar/components/code_editor/editor_model_style.dart';
 
-import 'package:ping/themes/color_highlighting/fusion_highlighting.dart';
-import 'package:ping/themes/color_highlighting/java_highlighting.dart';
-import 'package:ping/themes/color_highlighting/tiger_highlighting.dart';
+import 'package:jaguar/themes/color_highlighting/fusion_highlighting.dart';
+import 'package:jaguar/themes/color_highlighting/java_highlighting.dart';
+import 'package:jaguar/themes/color_highlighting/tiger_highlighting.dart';
 
 import 'package:highlight/languages/java.dart';
 import 'package:highlight/languages/tiger.dart';
-import 'package:ping/themes/theme_switcher.dart';
+import 'package:jaguar/themes/theme_switcher.dart';
 
 import '../buttons/create_project_button.dart';
 import '../popups/unsaved_file_popup.dart';

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:ping/components/code_editor/editor_model_style.dart';
+import 'package:jaguar/components/code_editor/editor_model_style.dart';
 import 'file_editor.dart';
 
 class EditorModel extends ChangeNotifier {

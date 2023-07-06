@@ -1,4 +1,4 @@
-import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
 
 typedef ExecutionReport = bool Function();
 

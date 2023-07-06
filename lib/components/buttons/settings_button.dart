@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ping/pages/settings/settings_page.dart';
+import 'package:jaguar/pages/settings/settings_page.dart';
 
 class SettingsButton extends StatelessWidget {
   const SettingsButton({

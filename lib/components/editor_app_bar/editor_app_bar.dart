@@ -1,15 +1,15 @@
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:ping/backend/domains/entity/aspect_interface.dart';
-import 'package:ping/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
-import 'package:ping/backend/domains/entity/feature/feature.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
-import 'package:ping/components/buttons/new_project_button.dart';
-import 'package:ping/components/buttons/open_project_button.dart';
-import 'package:ping/components/buttons/run_button.dart';
-import 'package:ping/themes/theme_switcher.dart';
+import 'package:jaguar/backend/domains/entity/aspect_interface.dart';
+import 'package:jaguar/backend/domains/entity/feature/compiler/tigrou/tigrou_remote.dart';
+import 'package:jaguar/backend/domains/entity/feature/feature.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/service/shared_prefs_handler.dart';
+import 'package:jaguar/components/buttons/new_project_button.dart';
+import 'package:jaguar/components/buttons/open_project_button.dart';
+import 'package:jaguar/components/buttons/run_button.dart';
+import 'package:jaguar/themes/theme_switcher.dart';
 import '../buttons/settings_button.dart';
 
 class EditorAppBar extends StatefulWidget implements PreferredSizeWidget {

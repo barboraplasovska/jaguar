@@ -31,7 +31,8 @@ class _OutputBoxState extends State<OutputBox> {
   }
 
   void setupFileMonitoring() async {
-    String filePath = "${widget.project!.getRootNode().getPath()}/.ping/output";
+    String filePath =
+        "${widget.project!.getRootNode().getPath()}/.jaguar/output";
     _outputFile = File(filePath);
 
     if (await _outputFile.exists()) {
