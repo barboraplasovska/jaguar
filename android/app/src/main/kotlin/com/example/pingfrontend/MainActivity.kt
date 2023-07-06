@@ -1,4 +1,4 @@
-package com.example.ping
+package com.example.jaguar
 
 import io.flutter.embedding.android.FlutterActivity
 

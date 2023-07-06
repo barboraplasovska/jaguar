@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:ping/backend/domains/entity/feature/feature.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
-import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
-import 'package:ping/backend/utils/files/file_utils.dart';
+import 'package:jaguar/backend/domains/entity/feature/feature.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/service/shared_prefs_handler.dart';
+import 'package:jaguar/backend/utils/files/file_utils.dart';
 
 class ExecFeature extends Feature {
   ExecFeature() : super(MavenFeature.exec);
@@ -16,12 +16,14 @@ class ExecFeature extends Feature {
       String pomPath = project.getRootNode().getPath();
       String args = await getJavaCompilationOptions();
       args = "${args != "" ? "$command$args" : command} -q";
-      List<String> arguments= args.split(' ');
-      await Process.run('mvn', ['clean','install'], workingDirectory: pomPath);
+      List<String> arguments = args.split(' ');
+      await Process.run('mvn', ['clean', 'install'], workingDirectory: pomPath);
       ProcessResult result =
           await Process.run('mvn', arguments, workingDirectory: pomPath);
-      String stringWithoutEscapeSequences = result.stdout.replaceAll(RegExp(r'\x1B\[[0-9;]*[mG]'), '');
-      await writeOutput(stringWithoutEscapeSequences, project.getRootNode().getPath());
+      String stringWithoutEscapeSequences =
+          result.stdout.replaceAll(RegExp(r'\x1B\[[0-9;]*[mG]'), '');
+      await writeOutput(
+          stringWithoutEscapeSequences, project.getRootNode().getPath());
     } catch (e) {
       report = () => false;
     }
@@ -34,5 +36,4 @@ class ExecFeature extends Feature {
     return await compile(project, "compile exec:java",
         additionalArguments: additionalArguments);
   }
-
 }

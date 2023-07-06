@@ -1,4 +1,4 @@
-import 'package:ping/backend/domains/entity/node_interface.dart';
+import 'package:jaguar/backend/domains/entity/node_interface.dart';
 
 import 'aspect_interface.dart';
 

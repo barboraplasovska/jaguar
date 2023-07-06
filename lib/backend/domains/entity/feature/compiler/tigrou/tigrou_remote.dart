@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:ping/backend/domains/entity/feature/feature.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/entity/feature/feature.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
 import 'package:http/http.dart' as http;
-import 'package:ping/backend/utils/files/file_utils.dart';
+import 'package:jaguar/backend/utils/files/file_utils.dart';
 
 class ServerResponse {
   final String content;
@@ -25,7 +25,7 @@ class TigrouRemote extends Feature {
     var data = {
       'content': content,
     };
-    final response =  await http.post(
+    final response = await http.post(
       Uri.parse('https://tigrou.celian.cloud/compile'),
       body: data,
     );
@@ -37,9 +37,9 @@ class TigrouRemote extends Feature {
     }
   }
 
-
   @override
-  Future<ExecutionReport> execute(IProject project, {List<String> additionalArguments = const []}) async {
+  Future<ExecutionReport> execute(IProject project,
+      {List<String> additionalArguments = const []}) async {
     String input = await File(additionalArguments[0]).readAsString();
 
     ServerResponse response = await remoteCompile(input);
@@ -48,5 +48,4 @@ class TigrouRemote extends Feature {
 
     return Future.value(report);
   }
-
 }

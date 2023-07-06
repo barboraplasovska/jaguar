@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:path/path.dart';
 
-import 'package:ping/backend/domains/entity/aspect_interface.dart';
-import 'package:ping/components/buttons/create_project_button.dart';
+import 'package:jaguar/backend/domains/entity/aspect_interface.dart';
+import 'package:jaguar/components/buttons/create_project_button.dart';
 
-import 'package:ping/components/output_box/output_box.dart';
-import 'package:ping/themes/theme_switcher.dart';
+import 'package:jaguar/components/output_box/output_box.dart';
+import 'package:jaguar/themes/theme_switcher.dart';
 
 import '../../backend/domains/entity/project_interface.dart';
 import '../code_editor/code_editor.dart';
@@ -61,7 +61,6 @@ class _FileDetailState extends State<FileDetail> {
       return 'Error reading file: ${e.toString()}';
     }
   }
-
 
   @override
   void initState() {

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeSwitcher themeSwitcher = Provider.of<ThemeSwitcher>(context);
     return MaterialApp(
-      title: 'Ping',
+      title: 'jaguar',
       theme: themeSwitcher.currentTheme,
       home: StarterPage(themeSwitcher: themeSwitcher),
     );

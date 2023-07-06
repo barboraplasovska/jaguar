@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ping/backend/domains/service/shared_prefs_handler.dart';
-import 'package:ping/themes/theme_switcher.dart';
+import 'package:jaguar/backend/domains/service/shared_prefs_handler.dart';
+import 'package:jaguar/themes/theme_switcher.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {

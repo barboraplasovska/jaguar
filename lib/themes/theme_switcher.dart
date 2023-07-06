@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ping/themes/fusion_theme.dart';
-import 'package:ping/themes/java_theme.dart';
-import 'package:ping/themes/tiger_theme.dart';
+import 'package:jaguar/themes/fusion_theme.dart';
+import 'package:jaguar/themes/java_theme.dart';
+import 'package:jaguar/themes/tiger_theme.dart';
 
 enum AppTheme { tiger, java, fusion }
 

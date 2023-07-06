@@ -1,5 +1,5 @@
-import 'package:ping/backend/domains/entity/feature/feature.dart';
-import 'package:ping/backend/domains/entity/project_interface.dart';
+import 'package:jaguar/backend/domains/entity/feature/feature.dart';
+import 'package:jaguar/backend/domains/entity/project_interface.dart';
 
 import 'maven_compiler.dart';
 
